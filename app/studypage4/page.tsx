@@ -91,6 +91,11 @@ const pageContent = {
     footerCopyright: "Harmonia. Kaikki oikeudet pidätetään.",
     confirmationAlert: "Varaus onnistui!",
     ad: "Mainos",
+    cookieTitle: "Evästeasetukset",
+    cookieText: "Käytämme evästeitä parantaaksemme käyttökokemustasi ja analysoidaksemme sivuston liikennettä.",
+    cookieAccept: "Hyväksy evästeet",
+    cookieDecline: "Hylkää",
+    cookieDeclineHover: "Sinun täytyy hyväksyä evästeet",
   },
   en: {
     nav: ["Menu", "Massages", "Services", "To companies", "About us"],
@@ -172,8 +177,67 @@ const pageContent = {
     footerCopyright: "Harmonia. All rights reserved.",
     confirmationAlert: "Reservation complete!",
     ad: "Ad",
+    cookieTitle: "Cookie settings",
+    cookieText: "We use cookies to improve your experience and analyze site traffic.",
+    cookieAccept: "Accept cookies",
+    cookieDecline: "Decline",
+    cookieDeclineHover: "You must accept cookies",
   },
 } as const;
+
+export function CookiePopup({
+  isOpen,
+  onAccept,
+  onDecline,
+  studyGroup,
+  content,
+}: {
+  isOpen: boolean;
+  onAccept: () => void;
+  onDecline: () => void;
+  studyGroup: "A" | "B" | null;
+  content: typeof pageContent["fi"];
+}) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-96 bg-white shadow-2xl border border-gray-200 rounded-xl p-6 z-[100] animate-in slide-in-from-bottom-5">
+      <h3 className="text-lg font-bold text-gray-900 mb-2">{content.cookieTitle}</h3>
+      <p className="text-sm text-gray-600 mb-6 leading-relaxed">{content.cookieText}</p>
+      
+      <div className="flex flex-col gap-3">
+        <button
+          onClick={onAccept}
+          className="w-full bg-blue-700 text-white font-semibold py-2.5 rounded-lg hover:bg-blue-800 transition-colors"
+        >
+          {content.cookieAccept}
+        </button>
+        
+        <div 
+          className="w-full relative group"
+        >
+          <button
+            onClick={studyGroup === "B" ? undefined : onDecline}
+            disabled={studyGroup === "B"}
+            className={`w-full font-medium py-2.5 rounded-lg transition-colors border ${
+              studyGroup === "B" 
+                ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed" 
+                : "bg-white text-gray-600 border-gray-300 hover:bg-gray-50"
+            }`}
+          >
+            {content.cookieDecline}
+          </button>
+          {studyGroup === "B" && (
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-max max-w-xs bg-gray-900 text-white text-xs py-1.5 px-3 rounded shadow-lg pointer-events-none z-50">
+              {content.cookieDeclineHover}
+              <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900" />
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function PopupAdBar({
   isOpen,
@@ -229,6 +293,7 @@ export default function Studypage4() {
   const { studyGroup } = useVariant();
   const content = pageContent[locale];
   const [isAdShowing, setIsAdShowing] = useState(studyGroup === "A");
+  const [showCookie, setShowCookie] = useState(true);
 
   const nextStep = () => setStep((s) => Math.min(s + 1, 4));
   const prevStep = () => setStep((s) => Math.max(s - 1, 1));
@@ -241,6 +306,13 @@ export default function Studypage4() {
 
   return (
     <div className="min-h-screen bg-white text-gray-800 font-sans">
+      <CookiePopup 
+        isOpen={showCookie} 
+        onAccept={() => setShowCookie(false)} 
+        onDecline={() => setShowCookie(false)} 
+        studyGroup={studyGroup} 
+        content={content} 
+      />
       <PopupAdBar
         isOpen={isAdShowing}
         onClose={() => setIsAdShowing(false)}
