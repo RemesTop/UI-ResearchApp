@@ -9,9 +9,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-100">
-      <main className="mx-auto w-full max-w-4xl px-6 py-16 sm:px-10 lg:py-24">
-        <section className="rounded-2xl bg-white p-8 shadow-sm sm:p-10 lg:p-12">
-          <div className="flex items-center justify-between gap-4">
+      <main className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 sm:py-16 lg:py-24">
+        <section className="rounded-2xl bg-white p-5 shadow-sm sm:p-10 lg:p-12">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">
               {messages.intro.badge}
             </p>
