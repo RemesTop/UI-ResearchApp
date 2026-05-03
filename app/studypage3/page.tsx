@@ -253,17 +253,17 @@ export default function StudyPage3() {
 						<div className="rounded-full bg-white/90 p-1.5 text-[#5c3a8e]">
 							<LogoIcon className="h-10 w-10" />
 						</div>
-						<nav className={`${titleFont.className} hidden items-center gap-6 text-sm uppercase tracking-wide md:flex`}>
+						<nav className={`${titleFont.className} flex items-center gap-4 text-sm uppercase tracking-wide`}>
 							<a href="#services" className="hover:opacity-85">
 								{content.nav[0]}
 							</a>
-							<a href="#team" className="hover:opacity-85">
+							<a href="#team" className="hidden sm:inline hover:opacity-85">
 								{content.nav[1]}
 							</a>
-							<a href="#testimonials" className="hover:opacity-85">
+							<a href="#testimonials" className="hidden sm:inline hover:opacity-85">
 								{content.nav[2]}
 							</a>
-							<a href="#contact" className="hover:opacity-85">
+							<a href="#contact" className="hidden md:inline hover:opacity-85">
 								{content.nav[3]}
 							</a>
 						</nav>
@@ -316,7 +316,7 @@ export default function StudyPage3() {
 					<div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
 						<h2 className={`${titleFont.className} text-center text-4xl text-[#40334e]`}>{content.servicesTitle}</h2>
 						<p className="mx-auto mt-5 max-w-5xl text-base leading-7 text-[#473d57]">{content.servicesNotice}</p>
-						<div className="mt-10 grid gap-8 md:grid-cols-2">
+						<div className="mt-10 grid grid-cols-2 gap-4 sm:gap-8">
 							{content.services.map((service) => (
 								<article key={service.title}>
 									<h3 className="text-2xl font-bold text-[#2f2839]">{service.title}</h3>
@@ -332,7 +332,7 @@ export default function StudyPage3() {
 					<h2 className={`${titleFont.className} text-center text-4xl text-[#40334e]`}>{content.teamTitle}</h2>
 					<p className="mx-auto mt-4 max-w-4xl text-center text-base leading-7 text-[#4c445b]">{content.teamDescription}</p>
 
-					<div className="mx-auto mt-9 grid max-w-4xl gap-8 sm:grid-cols-2">
+					<div className="mx-auto mt-9 grid max-w-4xl grid-cols-2 gap-4 sm:gap-8">
 						{info.employees.map((member) => (
 							<article key={member.id} className="text-center">
 								<Image
@@ -355,7 +355,7 @@ export default function StudyPage3() {
 						<p className="mx-auto mt-4 max-w-3xl text-center text-base leading-7 text-[#4b425a]">{content.testimonialsIntro}</p>
 						<p className="mt-4 text-center text-2xl tracking-[0.4rem] text-[#5c3a8e]">★★★★★</p>
 
-						<div className="mt-8 grid gap-8 md:grid-cols-2">
+						<div className="mt-8 grid grid-cols-2 gap-4 sm:gap-8">
 							{content.testimonials.map((quote, index) => (
 								<blockquote key={index} className="text-center text-base leading-7 text-[#4a4258]">
 									&quot;{quote}&quot;
@@ -368,7 +368,7 @@ export default function StudyPage3() {
 
 				<section id="contact" className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
 					<h2 className={`${titleFont.className} text-center text-4xl text-[#40334e]`}>{content.contactTitle}</h2>
-					<div className="mt-8 grid gap-8 md:grid-cols-2">
+					<div className="mt-8 grid grid-cols-2 gap-4 sm:gap-8">
 						<div className="space-y-3 text-lg text-[#3f374f]">
 							<div className="flex items-center gap-3">
 								<div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-[#a892c7] bg-white">

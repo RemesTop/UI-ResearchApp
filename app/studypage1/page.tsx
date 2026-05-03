@@ -619,7 +619,7 @@ export default function StudyPage1() {
 						</p>
 					</FadeSection>
 
-					<div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+					<div className="mt-16 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
 						{t.services.items.map((svc, i) => (
 							<FadeSection key={svc.name} delay={`${i * 80}ms`}>
 								<div className={`group relative flex h-full flex-col rounded-2xl border ${theme.borderLight} ${theme.cardBg} p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${theme.cardHover}`}>

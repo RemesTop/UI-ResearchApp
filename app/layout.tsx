@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   description: "Website interface study",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{

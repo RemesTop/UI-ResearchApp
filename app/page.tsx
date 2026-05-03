@@ -63,15 +63,15 @@ export default function Home() {
             {messages.intro.privacyNote}
           </p>
 
-          <div className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
             <Link
               href="/studypage1"
-              className="inline-flex rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
+              className="shrink-0 inline-flex rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
             >
               {messages.intro.begin}
             </Link>
 
-            <div className="flex items-center gap-3 border-l border-slate-200 pl-4 sm:ml-auto">
+            <div className="flex items-center gap-3 border-l border-slate-200 pl-4 ml-auto shrink-0">
               <p className="text-xs font-medium text-slate-900">
                 &copy; University of Eastern Finland
               </p>

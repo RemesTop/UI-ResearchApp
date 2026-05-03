@@ -414,8 +414,8 @@ export function AiAssistantPopup({
   };
 
   return (
-    <div className="fixed left-4 bottom-4 z-[90] animate-in slide-in-from-bottom-4">
-      <div className="bg-white shadow-2xl border border-gray-200 rounded-lg w-80 flex flex-col overflow-hidden">
+    <div className="fixed left-2 sm:left-4 bottom-4 z-[90] animate-in slide-in-from-bottom-4 max-w-[calc(100vw-1rem)]">
+      <div className="bg-white shadow-2xl border border-gray-200 rounded-lg w-80 max-w-full flex flex-col overflow-hidden">
         <div className="bg-[#0047AB] text-white p-3 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
@@ -569,7 +569,7 @@ export default function Studypage4() {
               {content.booking}
             </h2>
           </div>
-          <div className="bg-white -xl shadow-lg border border-gray-200 overflow-hidden w-200 h-150 mx-auto">
+          <div className="bg-white shadow-lg border border-gray-200 overflow-x-auto w-full mx-auto">
             <div className="flex bg-gray-100 border-b border-gray-200">
               {[1, 2, 3, 4].map((num) => (
                 <div
@@ -599,214 +599,23 @@ export default function Studypage4() {
                   <h3 className="text-white bg-blue-800 p-3 mb-4">
                     {content.cardDesc}
                   </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Box 1 */}
-                    <label className="block cursor-pointer group">
-                      <input
-                        type="radio"
-                        name="service"
-                        className="peer sr-only"
-                      />
-
-                      <div
-                        className="border-2 border-black-200 p-5 w-110 
-                    hover:bg-blue-50 transition-colors
-                    peer-checked:border-blue-500 peer-checked:bg-blue-50/50"
-                      >
-                        <div className="flex justify-between mb-1">
-                          <span className="font-semibold text-gray-800">
-                            {content.services[0].title}
-                          </span>
-                          <span className="font-semibold text-blue-800">
-                            {content.services[0].pricing}
-                          </span>
-                        </div>
-                        <p className="text-xs text-gray-600">
-                          {content.services[0].description}
-                        </p>
-                      </div>
-                    </label>
-
-                    {/* Box 2 */}
-                    <label className="block cursor-pointer group flex justify-end">
-                      <input
-                        type="radio"
-                        name="service"
-                        className="peer sr-only"
-                      />
-
-                      <div
-                        className="border-2 border-black-200 p-4 w-70 ml-6 h-18
-                    hover:bg-blue-50 transition-colors
-                    peer-checked:border-blue-500 peer-checked:bg-blue-50/50"
-                      >
-                        <div className="flex justify-between mb-1">
-                          <span className="font-semibold text-gray-800">
-                            {content.services[2].title}
-                          </span>
-                          <span className="text-blue-600 font-bold">
-                            {content.services[2].pricing}
-                          </span>
-                        </div>
-                        <p className="text-xs text-gray-600">
-                          {content.services[2].description}
-                        </p>
-                      </div>
-                    </label>
-
-                    {/* Box 3 */}
-                    <label className="block cursor-pointer group">
-                      <input
-                        type="radio"
-                        name="service"
-                        className="peer sr-only"
-                      />
-
-                      <div
-                        className="border-2 border-black-200 p-5 -mt-2 w-110 
-                    hover:bg-blue-50 transition-colors
-                    peer-checked:border-blue-500 peer-checked:bg-blue-50/50"
-                      >
-                        <div className="flex justify-between mb-1">
-                          <span className="font-semibold text-gray-800">
-                            {content.services[1].title}
-                          </span>
-                          <span className="font-semibold text-blue-800">
-                            {content.services[1].pricing}
-                          </span>
-                        </div>
-                        <p className="text-xs text-gray-600">
-                          {content.services[1].description}
-                        </p>
-                      </div>
-                    </label>
-
-                    {/* Box 4 */}
-                    <label className="block cursor-pointer group flex justify-end">
-                      <input
-                        type="radio"
-                        name="service"
-                        className="peer sr-only"
-                      />
-
-                      <div
-                        className="border-2 border-black-200 p-4 w-70 ml-6 -mt-17 h-18
-                    hover:bg-blue-50 transition-colors
-                    peer-checked:border-blue-500 peer-checked:bg-blue-50/50"
-                      >
-                        <div className="flex justify-between mb-1">
-                          <span className="font-semibold text-gray-800">
-                            {content.services[3].title}
-                          </span>
-                          <span className="text-blue-600 font-bold">
-                            {content.services[3].pricing}
-                          </span>
-                        </div>
-                        <p className="text-xs text-gray-600">
-                          {content.services[3].description}
-                        </p>
-                      </div>
-                    </label>
-
-                    {/* Box 5 */}
-                    <label className="block cursor-pointer group">
-                      <input
-                        type="radio"
-                        name="service"
-                        className="peer sr-only"
-                      />
-
-                      <div
-                        className="border-2 border-black-200 p-5 w-110 h-10 -mt-3
-                        flex flex-col justify-evenly pt-2
-                        hover:bg-blue-50 transition-colors
-                        peer-checked:border-blue-500 peer-checked:bg-blue-50/50"
-                      >
-                        <div className="flex justify-between mb-1">
-                          <span className="font-semibold text-gray-800">
-                            {content.services[6]?.title}
-                          </span>
-                          <span className="text-blue-600 font-bold">+</span>
-                        </div>
-                      </div>
-                    </label>
-
-                    {/* Box 6 */}
-                    <label className="block cursor-pointer group flex justify-end">
-                      <input
-                        type="radio"
-                        name="service"
-                        className="peer sr-only"
-                      />
-
-                      <div
-                        className="border-2 border-black-200 p-4 w-70 ml-6 -mt-30 h-18
-                    hover:bg-blue-50 transition-colors
-                    peer-checked:border-blue-500 peer-checked:bg-blue-50/50"
-                      >
-                        <div className="flex justify-between mb-1">
-                          <span className="font-semibold text-gray-800">
-                            {content.services[4]?.title}
-                          </span>
-                          <span className="text-blue-600 font-bold">
-                            {content.services[4]?.pricing}
-                          </span>
-                        </div>
-                        <p className="text-xs text-gray-600">
-                          {content.services[4]?.description}
-                        </p>
-                      </div>
-                    </label>
-
-                    {/* Box 7 */}
-                    <label className="block cursor-pointer group">
-                      <input
-                        type="radio"
-                        name="service"
-                        className="peer sr-only"
-                      />
-
-                      <div
-                        className="border-2 -border-black 200 p-5 -mt-3 w-110 h-10
-                        flex flex-col justify-evenly pt-2
-                        hover:bg-blue-50 transition-colors
-                        peer-checked:border-blue-500 peer-checked:bg-blue-50/50"
-                      >
-                        <div className="flex justify-between mb-1">
-                          <span className="font-semibold text-gray-800">
-                            {content.services[7]?.title}
-                          </span>
-                          <span className="text-blue-600 font-bold">+</span>
-                        </div>
-                      </div>
-                    </label>
-
-                    {/* Box 8 */}
-                    <label className="block cursor-pointer group flex justify-end">
-                      <input
-                        type="radio"
-                        name="service"
-                        className="peer sr-only"
-                      />
-
-                      <div
-                        className="border-2 border-black-200 p-4 w-70 ml-6 -mt-24 h-18
-                    hover:bg-blue-50 transition-colors
-                    peer-checked:border-blue-500 peer-checked:bg-blue-50/50"
-                      >
-                        <div className="flex justify-between mb-1">
-                          <span className="font-semibold text-gray-800">
-                            {content.services[5]?.title}
-                          </span>
-                          <span className="text-blue-600 font-bold">
-                            {content.services[5]?.pricing}
-                          </span>
-                        </div>
-                        <p className="text-xs text-gray-600">
-                          {content.services[5]?.description}
-                        </p>
-                      </div>
-                    </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {[0, 1, 2, 3, 4, 5].map((idx) => (
+                      content.services[idx] && (
+                        <label key={idx} className="block cursor-pointer group">
+                          <input type="radio" name="service" className="peer sr-only" />
+                          <div className="border-2 border-gray-200 p-4 h-full hover:bg-blue-50 transition-colors peer-checked:border-blue-500 peer-checked:bg-blue-50/50">
+                            <div className="flex justify-between mb-1">
+                              <span className="font-semibold text-gray-800 text-sm">{content.services[idx].title}</span>
+                              <span className="font-semibold text-blue-800 text-sm shrink-0 ml-2">{content.services[idx].pricing}</span>
+                            </div>
+                            {content.services[idx].description && (
+                              <p className="text-xs text-gray-600">{content.services[idx].description}</p>
+                            )}
+                          </div>
+                        </label>
+                      )
+                    ))}
                   </div>
                 </div>
               )}
@@ -1001,18 +810,18 @@ export default function Studypage4() {
             </div>
 
             <div className="bg-gray-200 relative min-h-[300px]">
-              {/* Map Placeholder */}
-              <h5 className="text-xl font-semibold text-gray-800 mb-4 -mt-10 ml-112">
-                {content.mapTitle}
-              </h5>
               <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-500 bg-gray-100 border-l border-gray-200">
                 <Image
                   src="/icons/map-light.png"
                   alt="Location"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
                 />
               </div>
+              <h5 className="absolute top-2 left-3 z-10 text-sm font-semibold text-gray-800 bg-white/80 px-2 py-1 rounded">
+                {content.mapTitle}
+              </h5>
             </div>
           </div>
         </section>
@@ -1025,7 +834,7 @@ export default function Studypage4() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {info.employees.map((employee) => (
               <article key={employee.id} className="text-center">
                 <div className="h-75 w-50 bg-white -xl overflow-hidden border-white hover:transition-shadow group">
