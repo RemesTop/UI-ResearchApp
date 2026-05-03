@@ -104,15 +104,15 @@ const pageContent = {
     aiSend: "Lähetä",
     aiWait: "Odota hetki, ilmoitamme sinulle heti kun asiakaspalvelija on vapaana.",
     cardsTitle: "Suomen rentouttavin hierontaketju palveluksessasi!",
-    cardsDesc: "Harmonia on Suomen laajin hierontaan keskittynyt ketju ja alansa markkinajohtaja. Vastaanotoillamme sinua hoitavat koulutetut hierojat, erikoishierojat, osteopaatit ja naprapaatit tavoitteellisesti kohti parempaa hyvinvointia.",
+    cardsDesc: "Harmonia on Suomen johtava hyvinvointipalveluja tarjoava hierontaketju. Vastaanotoillamme sinua hoitavat koulutetut hierojat, erikoishierojat, osteopaatit ja naprapaatit tavoitteellisesti kohti parempaa hyvinvointia.",
     card1Title: "Hierontakortti",
     card1Desc: "Harmonian kanta-asiakkaana saat 30% alennuksen normaalihintaisista hieronnoista.",
     card1Link: "Siirry kauppaan",
-    card2Title: "Maksutavat",
-    card2Desc: "Meillä voit maksaa ePassilla, Smartumilla ja Edenredillä.",
-    card2Link: "Siirry ajanvaraukseen",
-    card3Title: "Hinnat",
-    card3Desc: "Tutustu palveluvalikoimaan ja hinnastoon.",
+    card2Title: "Terveytesi tukena",
+    card2Desc: "Lue kuinka hieronta auttaa ylläpitämään terveyttäsi läpi elämän.",
+    card2Link: "Lue lisää",
+    card3Title: "Hinnat ja maksutavat",
+    card3Desc: "Tutustu palveluvalikoimaan ja hinnastoon. Meillä käy ePassi, Smartum ja Edenred.",
     card3Link: "Katso hinnasto",
     footerTitle: "Ota rohkeasti aikaa itsellesi!",
     footerCol1: "Ajanvaraus",
@@ -233,15 +233,15 @@ const pageContent = {
     aiSend: "Send",
     aiWait: "Please wait, we will notify you as soon as a customer service representative is available.",
     cardsTitle: "The most relaxing massage chain in Finland at your service!",
-    cardsDesc: "Harmonia is Finland's largest chain focused on massage and the market leader in its field. At our clinics, you will be treated by trained massage therapists, specialized massage therapists, osteopaths, and naprapaths, working towards your better well-being.",
+    cardsDesc: "Harmonia is Finland's leading wellness massage chain. At our clinics, you will be treated by trained massage therapists, specialized massage therapists, osteopaths, and naprapaths, working towards your better well-being.",
     card1Title: "Massage card",
     card1Desc: "As a Harmonia loyal customer, you get a 30% discount on normal-priced massages.",
     card1Link: "Go to store",
-    card2Title: "Payment methods",
-    card2Desc: "We accept ePassi, Smartum, and Edenred.",
-    card2Link: "Go to booking",
-    card3Title: "Prices",
-    card3Desc: "Check out our range of services and price list.",
+    card2Title: "Your health, our priority",
+    card2Desc: "Read how massage helps you maintain your health and well-being throughout life.",
+    card2Link: "Read more",
+    card3Title: "Prices & payment",
+    card3Desc: "Browse our services and price list. We accept ePassi, Smartum, and Edenred.",
     card3Link: "See price list",
     footerTitle: "Feel free to take time for yourself!",
     footerCol1: "Booking",
@@ -282,7 +282,7 @@ export function CookiePopup({
   onAccept: () => void;
   onDecline: () => void;
   studyGroup: "A" | "B" | null;
-  content: typeof pageContent["fi"];
+  content: typeof pageContent[keyof typeof pageContent];
 }) {
   const [locationEnabled, setLocationEnabled] = useState(true);
   const [adsEnabled, setAdsEnabled] = useState(true);
@@ -384,7 +384,7 @@ export function AiAssistantPopup({
   onClose: () => void;
   onOpen: () => void;
   studyGroup: "A" | "B" | null;
-  content: typeof pageContent["fi"];
+  content: typeof pageContent[keyof typeof pageContent];
 }) {
   const [messages, setMessages] = useState<{ text: string; isAi: boolean }[]>([
     { text: content.aiGreeting, isAi: true }
