@@ -69,7 +69,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
   };
 
   const navButtons = (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex w-max flex-nowrap gap-2">
       {studyRoutes.map((route, idx) => {
         // A button is accessible if it's the current page, previously visited, or exactly one step ahead of the furthest visited page
         const isGreyedOut = idx > maxRouteIndex + 1;
@@ -115,13 +115,13 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
     >
       <div className="absolute inset-0 bg-black/60" onClick={onClose} />
 
-      <div className="relative z-10 flex h-[100dvh] w-full max-w-5xl flex-col overflow-y-auto rounded-none bg-white p-3 pb-2 shadow-2xl sm:max-h-[92vh] sm:rounded-2xl sm:p-8">
+      <div className="relative z-10 flex h-[100dvh] w-full max-w-5xl flex-col overflow-y-auto rounded-none bg-white p-2 pb-2 shadow-2xl sm:max-h-[92vh] sm:rounded-2xl sm:p-8">
         <div className="flex flex-none items-start justify-between gap-4">
           <div>
             <h2 className="text-[20px] font-semibold text-slate-900 sm:text-2xl">
               {messages.survey.title}
             </h2>
-            <p className="mt-1 text-[14px] text-slate-600">
+            <p className="mt-1 text-[13px] text-slate-600">
               {messages.survey.description}
             </p>
           </div>
@@ -134,13 +134,15 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
           </button>
         </div>
 
-        <div className="mt-3 flex flex-none flex-wrap items-center justify-between gap-2 sm:hidden">
-          {navButtons}
+        <div className="mt-3 flex flex-none items-center gap-2 sm:hidden">
+          <div className="min-w-0 flex-1 overflow-x-auto">
+            {navButtons}
+          </div>
           {nextButton}
         </div>
 
         {/* Iframe Container for webropol survey */}
-        <div className="relative mt-3 flex-1 min-h-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-50 sm:mt-6">
+        <div className="relative mt-3 flex-1 min-h-0 overflow-hidden rounded-none border border-slate-200 bg-slate-50 sm:mt-6 sm:rounded-xl -mx-2 sm:mx-0">
           {surveyUrl ? (
             <iframe
               title={messages.survey.title}
@@ -149,7 +151,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
               loading="lazy"
             />
           ) : (
-            <p className="p-4 text-[14px] text-slate-600">
+            <p className="p-4 text-[13px] text-slate-600">
               {messages.survey.notConfigured}
             </p>
           )}

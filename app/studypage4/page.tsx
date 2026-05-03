@@ -307,12 +307,6 @@ export function CookiePopup({
               <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${locationEnabled ? 'transform translate-x-4' : ''}`}></div>
             </div>
           </label>
-          {studyGroup === "B" && (
-            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-max max-w-xs bg-gray-900 text-white text-xs py-1.5 px-3 rounded shadow-lg pointer-events-none z-50">
-              {content.cookieDeclineHover}
-              <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900" />
-            </div>
-          )}
         </div>
         <div className="relative group">
           <label className="flex items-center justify-between cursor-pointer">
@@ -323,23 +317,13 @@ export function CookiePopup({
               <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${adsEnabled ? 'transform translate-x-4' : ''}`}></div>
             </div>
           </label>
-          {studyGroup === "B" && (
-            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-max max-w-xs bg-gray-900 text-white text-xs py-1.5 px-3 rounded shadow-lg pointer-events-none z-50">
-              {content.cookieDeclineHover}
-              <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900" />
-            </div>
-          )}
         </div>
       </div>
 
       <div className="flex flex-col gap-3">
         <button
-          onClick={studyGroup === "A" && (!locationEnabled || !adsEnabled) ? undefined : onAccept}
-          disabled={studyGroup === "A" && (!locationEnabled || !adsEnabled)}
-          className={`w-full font-semibold py-2.5 rounded-lg transition-colors ${studyGroup === "A" && (!locationEnabled || !adsEnabled)
-            ? "bg-gray-300 text-gray-400 cursor-not-allowed"
-            : "bg-blue-700 text-white hover:bg-blue-800"
-            }`}
+          onClick={onAccept}
+          className="w-full font-semibold py-2.5 rounded-lg transition-colors bg-blue-700 text-white hover:bg-blue-800"
         >
           {content.cookieAccept}
         </button>

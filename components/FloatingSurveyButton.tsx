@@ -33,7 +33,7 @@ export default function FloatingSurveyButton() {
 
 	return (
 		<>
-			<div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+			<div className="floating-survey fixed z-50 flex flex-col items-end gap-3">
 				{showHint && !hintClosed && (
 					<div className="relative rounded-lg bg-white p-4 shadow-xl border border-slate-200 w-64">
 						<button 

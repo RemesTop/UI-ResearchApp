@@ -39,10 +39,18 @@ html {
 
 @media (max-width: 768px) {
   .survey-iframe {
-    transform: scale(0.85);
+    transform: scale(0.8);
     transform-origin: 0 0;
-    width: 117.65%;
-    height: 117.65%;
+    width: 125%;
+    height: 125%;
+  }
+}
+
+@media (max-width: 480px) {
+  .survey-iframe {
+    transform: scale(0.75);
+    width: 133.34%;
+    height: 133.34%;
   }
 }
 
@@ -55,4 +63,12 @@ body {
 
 body[data-survey-open="true"] .ai-assistant {
   display: none !important;
+}
+
+.floating-survey {
+  right: calc(1.5rem + env(safe-area-inset-right));
+  bottom: calc(1.5rem + env(safe-area-inset-bottom));
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
