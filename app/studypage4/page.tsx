@@ -832,19 +832,19 @@ export default function Studypage4() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
             {info.employees.map((employee) => (
               <article key={employee.id} className="text-center">
-                <div className="flex flex-col items-center rounded-xl bg-white p-4 sm:p-5">
-                  <div className="h-24 w-24 overflow-hidden rounded-full bg-white sm:h-28 sm:w-28 md:h-32 md:w-32">
+                <div className="flex flex-col items-center rounded-xl bg-white p-2">
+                  <div className="h-32 w-32 overflow-hidden rounded-full bg-white sm:h-36 sm:w-36 md:h-40 md:w-40">
                     {/* Next.js unoptimized used for external links in this mockup */}
                     <img
                       src={employee.image}
                       className="w-full h-full object-cover rounded-full"
                     />
                   </div>
-                  <div className="p-3 sm:p-4">
-                    <h3 className="text-xl font-semibold text-gray-800 mb-1">
+                  <div className="pt-3">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-1">
                       {employee.name}
                     </h3>
                     <div className="flex items-center justify-center text-sm mb-4">
