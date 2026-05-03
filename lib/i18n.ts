@@ -74,7 +74,7 @@ const messages: Record<Locale, Messages> = {
         "Aseta NEXT_PUBLIC_WEBROPOL_SURVEY_URL, jotta kysely upotetaan tähän.",
       close: "Sulje",
       back: "Takaisin",
-      next: "Seuraava",
+      next: "Seuraava sivu",
     },
     floating: {
       openSurvey: "Avaa kysely",
@@ -117,7 +117,7 @@ const messages: Record<Locale, Messages> = {
         "Set NEXT_PUBLIC_WEBROPOL_SURVEY_URL to embed the survey here.",
       close: "Close",
       back: "Back",
-      next: "Next",
+      next: "Next page",
     },
     floating: {
       openSurvey: "Open Survey",

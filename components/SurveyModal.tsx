@@ -10,6 +10,7 @@ const studyRoutes = [
   "/studypage2",
   "/studypage3",
   "/studypage4",
+  "/studypage5",
 ];
 
 type SurveyModalProps = {
@@ -18,7 +19,7 @@ type SurveyModalProps = {
 };
 
 export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
-  const { messages } = useLocale();
+  const { messages, locale } = useLocale();
   const { surveyUrl } = useVariant();
   const router = useRouter();
   const pathname = usePathname();
@@ -40,12 +41,6 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
     sessionStorage.setItem("ux-study-max-route", newMax.toString());
   }, [currentRouteIndex]);
 
-  const handleBack = () => {
-    if (currentRouteIndex > 0) {
-      onClose();
-      router.push(studyRoutes[currentRouteIndex - 1]);
-    }
-  };
 
   const handleNext = () => {
     if (!hasNext) {
@@ -109,18 +104,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
         </div>
 
         {/* Footer for buttons */}
-        <div className="mt-6 flex flex-none items-center justify-between">
-          {currentRouteIndex > 0 ? (
-            <button
-              onClick={handleBack}
-              className="rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-            >
-              {messages.survey.back}
-            </button>
-          ) : (
-            <div />
-          )}
-
+        <div className="mt-6 flex flex-none items-center justify-end gap-6">
           <div className="flex gap-2">
             {studyRoutes.map((route, idx) => {
               // A button is accessible if it's the current page, previously visited, or exactly one step ahead of the furthest visited page
@@ -133,7 +117,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
                     router.push(route);
                   }}
                   disabled={isGreyedOut}
-                  className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium transition ${
+                  className={`flex h-8 ${idx === studyRoutes.length - 1 ? 'w-auto px-4' : 'w-8'} items-center justify-center rounded-full text-sm font-medium transition ${
                     currentRouteIndex === idx
                       ? "bg-slate-900 text-white"
                       : isGreyedOut
@@ -141,16 +125,10 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
                       : "bg-slate-200 text-slate-700 hover:bg-slate-300"
                   }`}
                 >
-                  {idx + 1}
+                  {idx === studyRoutes.length - 1 ? (locale === "fi" ? "Loppu" : "End") : idx + 1}
                 </button>
               );
             })}
-            <button
-              disabled
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-400 text-sm font-medium cursor-not-allowed"
-            >
-              5
-            </button>
           </div>
 
           <button
