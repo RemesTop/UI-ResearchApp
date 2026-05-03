@@ -282,14 +282,16 @@ export function CookiePopup({
 }) {
   const [locationEnabled, setLocationEnabled] = useState(true);
   const [adsEnabled, setAdsEnabled] = useState(true);
+  const isGroupB = studyGroup === "B";
+  const isAcceptDisabled = isGroupB && (!locationEnabled || !adsEnabled);
 
   if (!isOpen) return null;
 
   const toggleLocation = () => {
-    if (studyGroup === "A") setLocationEnabled(!locationEnabled);
+    setLocationEnabled(!locationEnabled);
   };
   const toggleAds = () => {
-    if (studyGroup === "A") setAdsEnabled(!adsEnabled);
+    setAdsEnabled(!adsEnabled);
   };
 
   return (
@@ -298,7 +300,7 @@ export function CookiePopup({
       <p className="text-sm text-gray-600 mb-4 leading-relaxed">{content.cookieText}</p>
 
       <div className="mb-6 space-y-3">
-        <div className="relative group">
+        <div className="relative">
           <label className="flex items-center justify-between cursor-pointer">
             <span className="text-sm font-medium text-gray-700">{content.cookieLocation}</span>
             <div className="relative">
@@ -308,7 +310,7 @@ export function CookiePopup({
             </div>
           </label>
         </div>
-        <div className="relative group">
+        <div className="relative">
           <label className="flex items-center justify-between cursor-pointer">
             <span className="text-sm font-medium text-gray-700">{content.cookieAds}</span>
             <div className="relative">
@@ -321,27 +323,39 @@ export function CookiePopup({
       </div>
 
       <div className="flex flex-col gap-3">
-        <button
-          onClick={onAccept}
-          className="w-full font-semibold py-2.5 rounded-lg transition-colors bg-blue-700 text-white hover:bg-blue-800"
-        >
-          {content.cookieAccept}
-        </button>
+        <div className="relative group">
+          <button
+            onClick={isAcceptDisabled ? undefined : onAccept}
+            disabled={isAcceptDisabled}
+            className={`w-full font-semibold py-2.5 rounded-lg transition-colors ${isAcceptDisabled
+              ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+              : "bg-blue-700 text-white hover:bg-blue-800"
+              }`}
+          >
+            {content.cookieAccept}
+          </button>
+          {isAcceptDisabled && (
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block group-focus-within:block w-max max-w-xs bg-gray-900 text-white text-xs py-1.5 px-3 rounded shadow-lg pointer-events-none z-50">
+              {content.cookieDeclineHover}
+              <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900" />
+            </div>
+          )}
+        </div>
 
         <div
           className="w-full relative group"
         >
           <button
-            onClick={studyGroup === "B" ? undefined : onDecline}
-            disabled={studyGroup === "B"}
-            className={`w-full font-medium py-2.5 rounded-lg transition-colors border ${studyGroup === "B"
+            onClick={isGroupB ? undefined : onDecline}
+            disabled={isGroupB}
+            className={`w-full font-medium py-2.5 rounded-lg transition-colors border ${isGroupB
               ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
               : "bg-white text-gray-600 border-gray-300 hover:bg-gray-50"
               }`}
           >
             {content.cookieDecline}
           </button>
-          {studyGroup === "B" && (
+          {isGroupB && (
             <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-max max-w-xs bg-gray-900 text-white text-xs py-1.5 px-3 rounded shadow-lg pointer-events-none z-50">
               {content.cookieDeclineHover}
               <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900" />
@@ -818,11 +832,11 @@ export default function Studypage4() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
             {info.employees.map((employee) => (
               <article key={employee.id} className="text-center">
-                <div className="flex flex-col items-center rounded-xl bg-white p-3 sm:p-4">
-                  <div className="h-20 w-20 overflow-hidden rounded-full bg-white sm:h-24 sm:w-24 md:h-28 md:w-28">
+                <div className="flex flex-col items-center rounded-xl bg-white p-4 sm:p-5">
+                  <div className="h-24 w-24 overflow-hidden rounded-full bg-white sm:h-28 sm:w-28 md:h-32 md:w-32">
                     {/* Next.js unoptimized used for external links in this mockup */}
                     <img
                       src={employee.image}
