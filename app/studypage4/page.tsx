@@ -392,7 +392,7 @@ export function AiAssistantPopup({
     return (
       <button
         onClick={onOpen}
-        className="fixed left-4 bottom-4 z-[90] w-14 h-14 bg-[#0047AB] rounded-full flex items-center justify-center text-white shadow-lg hover:bg-blue-800 transition-colors animate-in slide-in-from-bottom-4"
+        className="ai-assistant fixed left-4 bottom-4 z-[90] w-14 h-14 bg-[#0047AB] rounded-full flex items-center justify-center text-white shadow-lg hover:bg-blue-800 transition-colors animate-in slide-in-from-bottom-4"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
       </button>
@@ -410,7 +410,7 @@ export function AiAssistantPopup({
   };
 
   return (
-    <div className="fixed left-2 sm:left-4 bottom-4 z-[90] animate-in slide-in-from-bottom-4 max-w-[calc(100vw-1rem)]">
+    <div className="ai-assistant fixed left-2 sm:left-4 bottom-4 z-[90] animate-in slide-in-from-bottom-4 max-w-[calc(100vw-1rem)]">
       <div className="bg-white shadow-2xl border border-gray-200 rounded-lg w-80 max-w-full flex flex-col overflow-hidden">
         <div className="bg-[#0047AB] text-white p-3 flex justify-between items-center">
           <div className="flex items-center space-x-2">
@@ -678,7 +678,7 @@ export default function Studypage4() {
                     {content.customerDetails}
                   </h3>
 
-                  <div className="grid grid-cols-2 gap-5">
+                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         {content.fName}
@@ -834,18 +834,18 @@ export default function Studypage4() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
             {info.employees.map((employee) => (
               <article key={employee.id} className="text-center">
-                <div className="h-75 w-50 bg-white -xl overflow-hidden border-white hover:transition-shadow group">
-                  <div className="h-50 w-50 bg-white-200 overflow-hidden">
+                <div className="flex flex-col items-center rounded-xl bg-white p-3 sm:p-4">
+                  <div className="h-20 w-20 overflow-hidden rounded-full bg-white sm:h-24 sm:w-24 md:h-28 md:w-28">
                     {/* Next.js unoptimized used for external links in this mockup */}
                     <img
                       src={employee.image}
                       className="w-full h-full object-cover rounded-full"
                     />
                   </div>
-                  <div className="p-6">
+                  <div className="p-3 sm:p-4">
                     <h3 className="text-xl font-semibold text-gray-800 mb-1">
                       {employee.name}
                     </h3>
@@ -962,7 +962,7 @@ export default function Studypage4() {
             </div>
 
             {/* Links Columns */}
-            <div className="md:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="md:col-span-8 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
               <div>
                 <h4 className="font-semibold text-lg mb-6">{content.footerCol1}</h4>
                 <ul className="space-y-4 text-sm font-medium">

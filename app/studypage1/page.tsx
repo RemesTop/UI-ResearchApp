@@ -619,7 +619,7 @@ export default function StudyPage1() {
 						</p>
 					</FadeSection>
 
-					<div className="mt-16 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
+					<div className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
 						{t.services.items.map((svc, i) => (
 							<FadeSection key={svc.name} delay={`${i * 80}ms`}>
 								<div className={`group relative flex h-full flex-col rounded-2xl border ${theme.borderLight} ${theme.cardBg} p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${theme.cardHover}`}>
@@ -670,7 +670,7 @@ export default function StudyPage1() {
 								{t.about.body}
 							</p>
 
-							<div className="mt-10 grid grid-cols-3 gap-6">
+							<div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
 								{t.about.stats.map((s) => (
 									<div key={s.label}>
 										<p className={`text-3xl font-extrabold ${theme.brand}`}>
