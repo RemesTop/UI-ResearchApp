@@ -554,6 +554,8 @@ export default function Studypage4() {
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
+              priority
+              loading="eager"
             />
           </div>
         </div>
@@ -986,8 +988,6 @@ export default function Studypage4() {
                   <li><a href="#" className="hover:underline">{content.footerCol3_2}</a></li>
                   <li><a href="#" className="hover:underline">{content.footerCol3_3}</a></li>
                   <li><a href="#" className="hover:underline">{content.footerCol3_4}</a></li>
-                  <li><a href="#" className="hover:underline">{content.footerCol3_5}</a></li>
-                  <li><a href="#" className="hover:underline">{content.footerCol3_6}</a></li>
                 </ul>
               </div>
               <div>
