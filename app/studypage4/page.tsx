@@ -114,7 +114,7 @@ const pageContent = {
     card3Title: "Hinnat ja maksutavat",
     card3Desc: "Tutustu palveluvalikoimaan ja hinnastoon. Meillä käy ePassi, Smartum ja Edenred.",
     card3Link: "Katso hinnasto",
-    footerTitle: "Ota rohkeasti aikaa itsellesi!",
+    footerTitle: "Terveytesi on tärkein!",
     footerCol1: "Ajanvaraus",
     footerCol1_1: "Varaa aika",
     footerCol1_2: "Siirrä ajanvaraus",
@@ -129,9 +129,7 @@ const pageContent = {
     footerCol3_1: "Julkaisut",
     footerCol3_2: "Yrityksemme",
     footerCol3_3: "Meille töihin",
-    footerCol3_4: "Omavalvontasuunnitelma",
-    footerCol3_5: "Palaute",
-    footerCol3_6: "Yhteystiedot",
+    footerCol3_4: "Yhteystiedot",
     footerCol4: "Ehdot",
     footerCol4_1: "Varaus- ja peruutusehdot",
     footerCol4_2: "Verkkokaupan tilausehdot",
@@ -258,9 +256,7 @@ const pageContent = {
     footerCol3_1: "Publications",
     footerCol3_2: "Our company",
     footerCol3_3: "Work with us",
-    footerCol3_4: "Self-monitoring plan",
-    footerCol3_5: "Feedback",
-    footerCol3_6: "Contact information",
+    footerCol3_4: "Contact information",
     footerCol4: "Terms",
     footerCol4_1: "Booking and cancellation terms",
     footerCol4_2: "Online store order terms",
@@ -341,8 +337,8 @@ export function CookiePopup({
           onClick={studyGroup === "A" && (!locationEnabled || !adsEnabled) ? undefined : onAccept}
           disabled={studyGroup === "A" && (!locationEnabled || !adsEnabled)}
           className={`w-full font-semibold py-2.5 rounded-lg transition-colors ${studyGroup === "A" && (!locationEnabled || !adsEnabled)
-              ? "bg-gray-300 text-gray-400 cursor-not-allowed"
-              : "bg-blue-700 text-white hover:bg-blue-800"
+            ? "bg-gray-300 text-gray-400 cursor-not-allowed"
+            : "bg-blue-700 text-white hover:bg-blue-800"
             }`}
         >
           {content.cookieAccept}
@@ -607,10 +603,12 @@ export default function Studypage4() {
                           <div className="border-2 border-gray-200 p-4 h-full hover:bg-blue-50 transition-colors peer-checked:border-blue-500 peer-checked:bg-blue-50/50">
                             <div className="flex justify-between mb-1">
                               <span className="font-semibold text-gray-800 text-sm">{content.services[idx].title}</span>
-                              <span className="font-semibold text-blue-800 text-sm shrink-0 ml-2">{content.services[idx].pricing}</span>
+                              {"pricing" in content.services[idx] && (
+                                <span className="font-semibold text-blue-800 text-sm shrink-0 ml-2">{(content.services[idx] as { pricing: string }).pricing}</span>
+                              )}
                             </div>
-                            {content.services[idx].description && (
-                              <p className="text-xs text-gray-600">{content.services[idx].description}</p>
+                            {"description" in content.services[idx] && (content.services[idx] as { description: string }).description && (
+                              <p className="text-xs text-gray-600">{(content.services[idx] as { description: string }).description}</p>
                             )}
                           </div>
                         </label>
