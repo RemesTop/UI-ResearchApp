@@ -165,12 +165,14 @@ function PopupImageModal({
 	return (
 		<div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/35 p-4" onClick={onClose}>
 			<div className="relative w-full max-w-[456px] overflow-hidden shadow-2xl" onClick={(event) => event.stopPropagation()}>
-				<Image src={src} alt={alt} width={imageWidth} height={imageHeight} className="h-auto w-full" priority />
+				<div style={{ position: "relative", width: "100%", paddingBottom: `${(imageHeight / imageWidth) * 100}%` }}>
+					<Image src={src} alt={alt} fill sizes="456px" className="object-contain" priority />
+				</div>
 				<button
 					type="button"
 					onClick={onClose}
 					aria-label="Close popup"
-					className="absolute right-1 top-1 h-10 w-10 cursor-pointer rounded-sm bg-transparent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4d3972]"
+					className="absolute right-0 top-0 h-20 w-20 cursor-pointer bg-transparent"
 				/>
 			</div>
 		</div>
@@ -245,10 +247,10 @@ export default function StudyPage3() {
 				imageWidth={456}
 				imageHeight={390}
 			/>
-			<header className="sticky top-0 z-10 border-b border-[#7f679f] bg-[#7d58ae] text-white">
+			<header className="sticky top-0 z-10 border-b border-[#5d457d] bg-[#8556bf] text-white">
 				<div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-3 py-2 sm:px-6">
 					<div className="flex items-center gap-3">
-						<div className="rounded-full bg-white/90 p-1.5 text-[#7d58ae]">
+						<div className="rounded-full bg-white/90 p-1.5 text-[#5c3a8e]">
 							<LogoIcon className="h-10 w-10" />
 						</div>
 						<nav className={`${titleFont.className} hidden items-center gap-6 text-sm uppercase tracking-wide md:flex`}>
@@ -274,7 +276,7 @@ export default function StudyPage3() {
 							>
 								{content.booking}
 							</button>
-							<p className="pointer-events-none absolute top-full mt-1 w-max rounded-md bg-[#4d3972]/95 px-2 py-1 text-[10px] leading-tight text-white opacity-0 shadow-md transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
+							<p className="pointer-events-none absolute top-full mt-1 w-max rounded-md bg-[#312150]/95 px-2 py-1 text-[10px] leading-tight text-white opacity-0 shadow-md transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
 								{content.bookingNote}
 							</p>
 						</div>
@@ -310,7 +312,7 @@ export default function StudyPage3() {
 					<p className="mt-4 text-center text-base font-semibold text-[#4a4159]">{content.heroHours}</p>
 				</section>
 
-				<section id="services" className="border-y border-[#b6a8cb] bg-[#c3b6d4]">
+				<section id="services" className="border-y border-[#b6a8cb] bg-[#baaace]">
 					<div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
 						<h2 className={`${titleFont.className} text-center text-4xl text-[#40334e]`}>{content.servicesTitle}</h2>
 						<p className="mx-auto mt-5 max-w-5xl text-base leading-7 text-[#473d57]">{content.servicesNotice}</p>
@@ -347,11 +349,11 @@ export default function StudyPage3() {
 					</div>
 				</section>
 
-				<section id="testimonials" className="border-y border-[#b6a8cb] bg-[#c3b6d4]">
+				<section id="testimonials" className="border-y border-[#b6a8cb] bg-[#baaace]">
 					<div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
 						<h2 className={`${titleFont.className} text-center text-4xl text-[#40334e]`}>{content.testimonialsTitle}</h2>
 						<p className="mx-auto mt-4 max-w-3xl text-center text-base leading-7 text-[#4b425a]">{content.testimonialsIntro}</p>
-						<p className="mt-4 text-center text-2xl tracking-[0.4rem] text-[#7d58ae]">★★★★★</p>
+						<p className="mt-4 text-center text-2xl tracking-[0.4rem] text-[#5c3a8e]">★★★★★</p>
 
 						<div className="mt-8 grid gap-8 md:grid-cols-2">
 							{content.testimonials.map((quote, index) => (
@@ -397,7 +399,7 @@ export default function StudyPage3() {
 						</div>
 
 						<div className="relative h-72 overflow-hidden border border-[#9e8fb8] bg-[#2d3956]">
-							<Image src="/icons/map.png" alt={content.mapAlt} fill className="object-cover" />
+							<Image src="/icons/map.png" alt={content.mapAlt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
 							<div className={`${titleFont.className} absolute inset-x-0 bottom-0 bg-[#2d3956]/70 px-3 py-2 text-center text-sm font-semibold text-white`}>
 								{content.mapLabel}
 							</div>

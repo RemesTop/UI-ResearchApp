@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useLocale } from "@/lib/LocaleContext";
 
 export default function Home() {
@@ -19,22 +20,20 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => setLocale("fi")}
-                className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
-                  locale === "fi"
-                    ? "bg-slate-900 text-white"
-                    : "border border-slate-300 text-slate-700 hover:bg-slate-100"
-                }`}
+                className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${locale === "fi"
+                  ? "bg-slate-900 text-white"
+                  : "border border-slate-300 text-slate-700 hover:bg-slate-100"
+                  }`}
               >
                 {messages.locale.finnish}
               </button>
               <button
                 type="button"
                 onClick={() => setLocale("en")}
-                className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
-                  locale === "en"
-                    ? "bg-slate-900 text-white"
-                    : "border border-slate-300 text-slate-700 hover:bg-slate-100"
-                }`}
+                className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${locale === "en"
+                  ? "bg-slate-900 text-white"
+                  : "border border-slate-300 text-slate-700 hover:bg-slate-100"
+                  }`}
               >
                 {messages.locale.english}
               </button>
@@ -44,16 +43,47 @@ export default function Home() {
           <h1 className="mt-6 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             {messages.intro.title}
           </h1>
-          <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg">
-            {messages.intro.body}
+          <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+            {messages.intro.lead}
+          </p>
+          <ol className="mt-5 space-y-3">
+            {messages.intro.steps.map((step, i) => (
+              <li key={i} className="flex gap-3">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white mt-0.5">
+                  {i + 1}
+                </span>
+                <span className="text-base leading-7 text-slate-600">
+                  <strong className="font-semibold text-slate-800">{step.label}:</strong>{" "}
+                  {step.desc}
+                </span>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-5 text-sm leading-6 text-slate-500 italic border-t border-slate-100 pt-4">
+            {messages.intro.privacyNote}
           </p>
 
-          <Link
-            href="/studypage1"
-            className="mt-8 inline-flex rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
-          >
-            {messages.intro.begin}
-          </Link>
+          <div className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+            <Link
+              href="/studypage1"
+              className="inline-flex rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
+            >
+              {messages.intro.begin}
+            </Link>
+
+            <div className="flex items-center gap-3 border-l border-slate-200 pl-4 sm:ml-auto">
+              <p className="text-xs font-medium text-slate-900">
+                &copy; University of Eastern Finland
+              </p>
+              <Image
+                src="/icons/University_of_Eastern_Finland_logo.svg"
+                alt="University of Eastern Finland"
+                width={0}
+                height={0}
+                style={{ width: "auto", height: "22px" }}
+              />
+            </div>
+          </div>
         </section>
       </main>
     </div>

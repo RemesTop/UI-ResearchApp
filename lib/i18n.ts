@@ -7,7 +7,9 @@ type Messages = {
   intro: {
     badge: string;
     title: string;
-    body: string;
+    lead: string;
+    steps: { label: string; desc: string }[];
+    privacyNote: string;
     begin: string;
   };
   locale: {
@@ -50,7 +52,14 @@ const messages: Record<Locale, Messages> = {
     intro: {
       badge: "Käyttöliittymätutkimus",
       title: "Tutkimuksen ohjeet",
-      body: "Tarkastelet sarjan verkkokäyttöliittymiä. Arvioi jokainen sivu luonnollisesti ja anna vastauksesi kyselylomakkeella.",
+      lead: "Tehtävänäsi on käydä läpi sarja testiverkkosivuja ja arvioida niitä aivan kuin olisit mahdollinen asiakas.",
+      steps: [
+        { label: "Aloita esitiedoista", desc: "Vastaa kyselyn ensimmäisellä sivulla muutamaan taustakysymykseen." },
+        { label: "Arvioi sivuja", desc: "Nettisivut ovat prototyyppejä, joten kaikki toiminnot eivät ole aitoja. Arvioi niitä ulkoasun ja yleisen käyttötuntuman perusteella." },
+        { label: "Vastaa kyselyyn", desc: "Jokaiselle testisivulle on kyselyssä oma arviosivunsa. Muista painaa kyselyssä 'Seuraava' aina sivua vaihtaessasi." },
+        { label: "Lähetä vastaukset", desc: "Muista lopuksi painaa kyselyn viimeisellä sivulla 'Lähetä'." },
+      ],
+      privacyNote: "Tämä tutkimus ei kerää sinusta mitään tunnistettavia tietoja. Sivuilla näkyvät evästeilmoitukset ovat mukana vain luomassa realistista käyttökokemusta, eivätkä ne oikeasti kerää dataa.",
       begin: "Aloita tutkimus",
     },
     locale: {
@@ -69,7 +78,7 @@ const messages: Record<Locale, Messages> = {
     },
     survey: {
       title: "Arviointikysely",
-      description: "Tähän lisätään myöhemmin varsinainen kyselylomake.",
+      description: "Vastaa kysymyksiin ja paina 'Seuraava sivu', kun olet valmis siirtymään eteenpäin.",
       notConfigured:
         "Aseta NEXT_PUBLIC_WEBROPOL_SURVEY_URL, jotta kysely upotetaan tähän.",
       close: "Sulje",
@@ -93,7 +102,14 @@ const messages: Record<Locale, Messages> = {
     intro: {
       badge: "Website interface study",
       title: "Study Instructions",
-      body: "You will review a sequence of web interfaces. Observe each page naturally and provide your responses in the survey.",
+      lead: "Your task is to go through a series of test websites and evaluate them as if you were a potential customer.",
+      steps: [
+        { label: "Start with background questions", desc: "Answer a few background questions on the first page of the survey." },
+        { label: "Evaluate the pages", desc: "The websites are prototypes, so not all features are real. Evaluate them based on their appearance and overall feel." },
+        { label: "Answer the survey", desc: "Each test page has its own rating page in the survey. Remember to press 'Next' in the survey every time you change pages." },
+        { label: "Submit your answers", desc: "Finally, remember to press 'Submit' on the last page of the survey." },
+      ],
+      privacyNote: "This study does not collect any identifiable information about you. Cookie notices shown on the pages are included only to simulate a realistic browsing experience and do not actually collect any data.",
       begin: "Begin Study",
     },
     locale: {
@@ -111,8 +127,8 @@ const messages: Record<Locale, Messages> = {
       navBack: "Back",
     },
     survey: {
-      title: "UX Survey",
-      description: "The full questionnaire form will be embedded here later.",
+      title: "Interface Study Survey",
+      description: "Answer the questions and press 'Next page' when you are ready to move on.",
       notConfigured:
         "Set NEXT_PUBLIC_WEBROPOL_SURVEY_URL to embed the survey here.",
       close: "Close",

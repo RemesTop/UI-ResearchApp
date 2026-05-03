@@ -57,6 +57,11 @@ const pageContent = {
 		freeTimesTitle: "Vapaat ajat",
 		freeTimes: ["Tänään|14:00, 16:30", "Huomenna|09:00, 10:15, 11:30, 14:00, 16:15", "Ylihuomenna|08:30, 10:00, 13:00, 15:00"],
 		footerCopy: "Kaikki oikeudet pidätetään.",
+		cookieTitle: "Evästeasetukset",
+		cookieText: "Käytämme evästeitä parantaaksemme käyttökokemustasi ja analysoidaksemme sivuston liikennettä.",
+		cookieAccept: "Hyväksy evästeet",
+		cookieDecline: "Hylkää",
+
 	},
 	en: {
 		nav: ["Services", "Experts", "Pricing", "Contact"],
@@ -104,6 +109,11 @@ const pageContent = {
 		freeTimesTitle: "Available times",
 		freeTimes: ["Today|14:00, 16:30", "Tomorrow|09:00, 10:15, 11:30, 14:00, 16:15", "Day after tomorrow|08:30, 10:00, 13:00, 15:00"],
 		footerCopy: "All rights reserved.",
+		cookieTitle: "Cookie settings",
+		cookieText: "We use cookies to improve your experience and analyze site traffic.",
+		cookieAccept: "Accept cookies",
+		cookieDecline: "Decline",
+
 	},
 };
 
@@ -403,7 +413,46 @@ const EnvelopeIcon = () => (
 	</svg>
 );
 
+
+export function CookiePopup({
+  isOpen,
+  onAccept,
+  onDecline,
+  content,
+}: {
+  isOpen: boolean;
+  onAccept: () => void;
+  onDecline: () => void;
+  content: typeof pageContent["fi"];
+}) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-96 bg-white shadow-2xl border border-gray-200 rounded-xl p-6 z-[100] animate-in slide-in-from-bottom-5">
+      <h3 className="text-lg font-bold text-gray-900 mb-2">{content.cookieTitle}</h3>
+      <p className="text-sm text-gray-600 mb-6 leading-relaxed">{content.cookieText}</p>
+
+      <div className="flex flex-col gap-3">
+        <button
+          onClick={onAccept}
+          className="w-full bg-[#38302A] text-white font-semibold py-2.5 rounded-lg hover:bg-black transition-colors"
+        >
+          {content.cookieAccept}
+        </button>
+        <button
+          onClick={onDecline}
+          className="w-full font-medium py-2.5 rounded-lg transition-colors border bg-white text-gray-600 border-gray-300 hover:bg-gray-50"
+        >
+          {content.cookieDecline}
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function StudyPage2() {
+  const [showCookie, setShowCookie] = useState(true);
+
 	const { locale } = useLocale();
 	const t = pageContent[locale];
 	const business = siteData[locale];
@@ -423,6 +472,12 @@ export default function StudyPage2() {
 
 	return (
 		<div className="min-h-screen bg-[#DDE4DB] font-sans text-[#3A3532]">
+			<CookiePopup
+				isOpen={showCookie}
+				onAccept={() => setShowCookie(false)}
+				onDecline={() => setShowCookie(false)}
+				content={t}
+			/>
 			{/* Navigation */}
 			<header className="fixed w-full top-0 z-50 bg-[#DDE4DB]/90 backdrop-blur-md border-b border-[#C8D2C6]">
 				<div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">

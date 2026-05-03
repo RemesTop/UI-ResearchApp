@@ -96,6 +96,49 @@ const pageContent = {
     cookieAccept: "Hyväksy evästeet",
     cookieDecline: "Hylkää",
     cookieDeclineHover: "Sinun täytyy hyväksyä evästeet",
+    cookieLocation: "Sijaintitiedot",
+    cookieAds: "Kohdennettu mainonta",
+    aiTitle: "Harmonia Asiakaspalvelu",
+    aiGreeting: "Hei, olen tekoälyavustajasi ja olen valmiina auttamaan sinua. Onko sinulla kysyttävää palveluistamme?",
+    aiPlaceholder: "Kirjoita viesti...",
+    aiSend: "Lähetä",
+    aiWait: "Odota hetki, ilmoitamme sinulle heti kun asiakaspalvelija on vapaana.",
+    cardsTitle: "Suomen rentouttavin hierontaketju palveluksessasi!",
+    cardsDesc: "Harmonia on Suomen laajin hierontaan keskittynyt ketju ja alansa markkinajohtaja. Vastaanotoillamme sinua hoitavat koulutetut hierojat, erikoishierojat, osteopaatit ja naprapaatit tavoitteellisesti kohti parempaa hyvinvointia.",
+    card1Title: "Hierontakortti",
+    card1Desc: "Harmonian kanta-asiakkaana saat 30% alennuksen normaalihintaisista hieronnoista.",
+    card1Link: "Siirry kauppaan",
+    card2Title: "Maksutavat",
+    card2Desc: "Meillä voit maksaa ePassilla, Smartumilla ja Edenredillä.",
+    card2Link: "Siirry ajanvaraukseen",
+    card3Title: "Hinnat",
+    card3Desc: "Tutustu palveluvalikoimaan ja hinnastoon.",
+    card3Link: "Katso hinnasto",
+    footerTitle: "Ota rohkeasti aikaa itsellesi!",
+    footerCol1: "Ajanvaraus",
+    footerCol1_1: "Varaa aika",
+    footerCol1_2: "Siirrä ajanvaraus",
+    footerCol1_3: "Palvelumme",
+    footerCol1_4: "Hinnasto",
+    footerCol2: "Verkkokauppa",
+    footerCol2_1: "Lahjakortit",
+    footerCol2_2: "Ostoskori",
+    footerCol2_3: "Kassa",
+    footerCol2_4: "Oma tili",
+    footerCol3: "Yrityksemme",
+    footerCol3_1: "Julkaisut",
+    footerCol3_2: "Yrityksemme",
+    footerCol3_3: "Meille töihin",
+    footerCol3_4: "Omavalvontasuunnitelma",
+    footerCol3_5: "Palaute",
+    footerCol3_6: "Yhteystiedot",
+    footerCol4: "Ehdot",
+    footerCol4_1: "Varaus- ja peruutusehdot",
+    footerCol4_2: "Verkkokaupan tilausehdot",
+    footerCol4_3: "Sivuston käyttöehdot",
+    footerCol4_4: "Tietosuojaseloste",
+    footerCol5: "Yrityksille",
+
   },
   en: {
     nav: ["Menu", "Massages", "Services", "To companies", "About us"],
@@ -182,6 +225,49 @@ const pageContent = {
     cookieAccept: "Accept cookies",
     cookieDecline: "Decline",
     cookieDeclineHover: "You must accept cookies",
+    cookieLocation: "Location",
+    cookieAds: "Targeted advertising",
+    aiTitle: "Harmonia Customer Service",
+    aiGreeting: "Hi, I am your AI assistant and I am ready to help you. Do you have any questions about our services?",
+    aiPlaceholder: "Type a message...",
+    aiSend: "Send",
+    aiWait: "Please wait, we will notify you as soon as a customer service representative is available.",
+    cardsTitle: "The most relaxing massage chain in Finland at your service!",
+    cardsDesc: "Harmonia is Finland's largest chain focused on massage and the market leader in its field. At our clinics, you will be treated by trained massage therapists, specialized massage therapists, osteopaths, and naprapaths, working towards your better well-being.",
+    card1Title: "Massage card",
+    card1Desc: "As a Harmonia loyal customer, you get a 30% discount on normal-priced massages.",
+    card1Link: "Go to store",
+    card2Title: "Payment methods",
+    card2Desc: "We accept ePassi, Smartum, and Edenred.",
+    card2Link: "Go to booking",
+    card3Title: "Prices",
+    card3Desc: "Check out our range of services and price list.",
+    card3Link: "See price list",
+    footerTitle: "Feel free to take time for yourself!",
+    footerCol1: "Booking",
+    footerCol1_1: "Book appointment",
+    footerCol1_2: "Reschedule appointment",
+    footerCol1_3: "Our services",
+    footerCol1_4: "Price list",
+    footerCol2: "Online store",
+    footerCol2_1: "Gift cards",
+    footerCol2_2: "Shopping cart",
+    footerCol2_3: "Checkout",
+    footerCol2_4: "My account",
+    footerCol3: "Our company",
+    footerCol3_1: "Publications",
+    footerCol3_2: "Our company",
+    footerCol3_3: "Work with us",
+    footerCol3_4: "Self-monitoring plan",
+    footerCol3_5: "Feedback",
+    footerCol3_6: "Contact information",
+    footerCol4: "Terms",
+    footerCol4_1: "Booking and cancellation terms",
+    footerCol4_2: "Online store order terms",
+    footerCol4_3: "Site terms of use",
+    footerCol4_4: "Privacy policy",
+    footerCol5: "For companies",
+
   },
 } as const;
 
@@ -198,32 +284,80 @@ export function CookiePopup({
   studyGroup: "A" | "B" | null;
   content: typeof pageContent["fi"];
 }) {
+  const [locationEnabled, setLocationEnabled] = useState(true);
+  const [adsEnabled, setAdsEnabled] = useState(true);
+
   if (!isOpen) return null;
+
+  const toggleLocation = () => {
+    if (studyGroup === "A") setLocationEnabled(!locationEnabled);
+  };
+  const toggleAds = () => {
+    if (studyGroup === "A") setAdsEnabled(!adsEnabled);
+  };
 
   return (
     <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-96 bg-white shadow-2xl border border-gray-200 rounded-xl p-6 z-[100] animate-in slide-in-from-bottom-5">
       <h3 className="text-lg font-bold text-gray-900 mb-2">{content.cookieTitle}</h3>
-      <p className="text-sm text-gray-600 mb-6 leading-relaxed">{content.cookieText}</p>
-      
+      <p className="text-sm text-gray-600 mb-4 leading-relaxed">{content.cookieText}</p>
+
+      <div className="mb-6 space-y-3">
+        <div className="relative group">
+          <label className="flex items-center justify-between cursor-pointer">
+            <span className="text-sm font-medium text-gray-700">{content.cookieLocation}</span>
+            <div className="relative">
+              <input type="checkbox" className="sr-only" checked={locationEnabled} onChange={toggleLocation} />
+              <div className={`block w-10 h-6 rounded-full transition-colors ${locationEnabled ? 'bg-blue-600' : 'bg-gray-300'}`}></div>
+              <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${locationEnabled ? 'transform translate-x-4' : ''}`}></div>
+            </div>
+          </label>
+          {studyGroup === "B" && (
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-max max-w-xs bg-gray-900 text-white text-xs py-1.5 px-3 rounded shadow-lg pointer-events-none z-50">
+              {content.cookieDeclineHover}
+              <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900" />
+            </div>
+          )}
+        </div>
+        <div className="relative group">
+          <label className="flex items-center justify-between cursor-pointer">
+            <span className="text-sm font-medium text-gray-700">{content.cookieAds}</span>
+            <div className="relative">
+              <input type="checkbox" className="sr-only" checked={adsEnabled} onChange={toggleAds} />
+              <div className={`block w-10 h-6 rounded-full transition-colors ${adsEnabled ? 'bg-blue-600' : 'bg-gray-300'}`}></div>
+              <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${adsEnabled ? 'transform translate-x-4' : ''}`}></div>
+            </div>
+          </label>
+          {studyGroup === "B" && (
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-max max-w-xs bg-gray-900 text-white text-xs py-1.5 px-3 rounded shadow-lg pointer-events-none z-50">
+              {content.cookieDeclineHover}
+              <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900" />
+            </div>
+          )}
+        </div>
+      </div>
+
       <div className="flex flex-col gap-3">
         <button
-          onClick={onAccept}
-          className="w-full bg-blue-700 text-white font-semibold py-2.5 rounded-lg hover:bg-blue-800 transition-colors"
+          onClick={studyGroup === "A" && (!locationEnabled || !adsEnabled) ? undefined : onAccept}
+          disabled={studyGroup === "A" && (!locationEnabled || !adsEnabled)}
+          className={`w-full font-semibold py-2.5 rounded-lg transition-colors ${studyGroup === "A" && (!locationEnabled || !adsEnabled)
+              ? "bg-gray-300 text-gray-400 cursor-not-allowed"
+              : "bg-blue-700 text-white hover:bg-blue-800"
+            }`}
         >
           {content.cookieAccept}
         </button>
-        
-        <div 
+
+        <div
           className="w-full relative group"
         >
           <button
             onClick={studyGroup === "B" ? undefined : onDecline}
             disabled={studyGroup === "B"}
-            className={`w-full font-medium py-2.5 rounded-lg transition-colors border ${
-              studyGroup === "B" 
-                ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed" 
-                : "bg-white text-gray-600 border-gray-300 hover:bg-gray-50"
-            }`}
+            className={`w-full font-medium py-2.5 rounded-lg transition-colors border ${studyGroup === "B"
+              ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
+              : "bg-white text-gray-600 border-gray-300 hover:bg-gray-50"
+              }`}
           >
             {content.cookieDecline}
           </button>
@@ -239,46 +373,82 @@ export function CookiePopup({
   );
 }
 
-export function PopupAdBar({
+export function AiAssistantPopup({
   isOpen,
   onClose,
-  src,
-  alt,
-  imageWidth,
-  imageHeight,
+  onOpen,
+  studyGroup,
+  content,
 }: {
   isOpen: boolean;
   onClose: () => void;
-  src: string;
-  alt: string;
-  imageWidth: number;
-  imageHeight: number;
+  onOpen: () => void;
+  studyGroup: "A" | "B" | null;
+  content: typeof pageContent["fi"];
 }) {
-  if (!isOpen) return null;
+  const [messages, setMessages] = useState<{ text: string; isAi: boolean }[]>([
+    { text: content.aiGreeting, isAi: true }
+  ]);
+  const [inputValue, setInputValue] = useState("");
+
+
+  if (!isOpen) {
+    return (
+      <button
+        onClick={onOpen}
+        className="fixed left-4 bottom-4 z-[90] w-14 h-14 bg-[#0047AB] rounded-full flex items-center justify-center text-white shadow-lg hover:bg-blue-800 transition-colors animate-in slide-in-from-bottom-4"
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+      </button>
+    );
+  }
+
+  const handleSend = () => {
+    if (!inputValue.trim()) return;
+    setMessages([...messages, { text: inputValue, isAi: false }]);
+    setInputValue("");
+
+    setTimeout(() => {
+      setMessages(prev => [...prev, { text: content.aiWait, isAi: true }]);
+    }, 1000);
+  };
 
   return (
-    <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50">
-      <div className="relative bg-white shadow-lg border rounded-lg p-4 w-70">
-        {/* Close button */}
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Close ad"
-          className="absolute -top-2 -right-2 bg-gray-800 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-gray-700"
-        >
-          ✕
-        </button>
+    <div className="fixed left-4 bottom-4 z-[90] animate-in slide-in-from-bottom-4">
+      <div className="bg-white shadow-2xl border border-gray-200 rounded-lg w-80 flex flex-col overflow-hidden">
+        <div className="bg-[#0047AB] text-white p-3 flex justify-between items-center">
+          <div className="flex items-center space-x-2">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span className="font-medium text-sm">{content.aiTitle}</span>
+          </div>
+          <button onClick={onClose} className="text-white hover:text-gray-200">
+            ✕
+          </button>
+        </div>
 
-        <p className="text-sm font-semibold mb-2">Sponsored</p>
+        <div className="h-64 p-4 overflow-y-auto flex flex-col space-y-3 bg-gray-50">
+          {messages.map((msg, i) => (
+            <div key={i} className={`max-w-[85%] rounded-lg p-2.5 text-sm ${msg.isAi ? "bg-white border border-gray-200 text-gray-800 self-start" : "bg-[#0047AB] text-white self-end"}`}>
+              {msg.text}
+            </div>
+          ))}
+        </div>
 
-        <div className="h-60 w-62 bg-gray-200 rounded flex items-center justify-center overflow-hidden">
-          <Image
-            src={src}
-            alt={alt}
-            width={imageWidth}
-            height={imageHeight}
-            className="h-60 w-80 object-cover"
+        <div className="p-3 bg-white border-t border-gray-200 flex">
+          <input
+            type="text"
+            className="flex-1 border border-gray-300 rounded-l-md px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-[#0047AB]"
+            placeholder={content.aiPlaceholder}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSend()}
           />
+          <button
+            onClick={handleSend}
+            className="bg-[#0047AB] text-white px-3 py-1.5 rounded-r-md text-sm font-medium hover:bg-blue-800 transition-colors"
+          >
+            {content.aiSend}
+          </button>
         </div>
       </div>
     </div>
@@ -292,13 +462,13 @@ export default function Studypage4() {
   const info = siteData[locale];
   const { studyGroup } = useVariant();
   const content = pageContent[locale];
-  const [isAdShowing, setIsAdShowing] = useState(studyGroup === "A");
+  const [isAiShowing, setIsAiShowing] = useState(studyGroup === "A");
   const [showCookie, setShowCookie] = useState(true);
 
   const nextStep = () => setStep((s) => Math.min(s + 1, 4));
   const prevStep = () => setStep((s) => Math.max(s - 1, 1));
   const submitBooking = () => {
-    alert("Reservation complete!");
+    alert(content.confirmationAlert);
     setStep(1);
   };
 
@@ -306,127 +476,109 @@ export default function Studypage4() {
 
   return (
     <div className="min-h-screen bg-white text-gray-800 font-sans">
-      <CookiePopup 
-        isOpen={showCookie} 
-        onAccept={() => setShowCookie(false)} 
-        onDecline={() => setShowCookie(false)} 
-        studyGroup={studyGroup} 
-        content={content} 
+      <CookiePopup
+        isOpen={showCookie}
+        onAccept={() => setShowCookie(false)}
+        onDecline={() => setShowCookie(false)}
+        studyGroup={studyGroup}
+        content={content}
       />
-      <PopupAdBar
-        isOpen={isAdShowing}
-        onClose={() => setIsAdShowing(false)}
-        src="/popup2.png"
-        alt={content.ad}
-        imageWidth={400}
-        imageHeight={257}
+      <AiAssistantPopup
+        isOpen={isAiShowing}
+        onClose={() => setIsAiShowing(false)}
+        onOpen={() => setIsAiShowing(true)}
+        studyGroup={studyGroup}
+        content={content}
       />
 
       {/* Navbar - White with blue text */}
       <nav
-        className={`bg-white shadow-sm border-b border-gray-200 z-50 ${isSticky ? "sticky top-0" : "relative"}`}
+        className={`bg-white border-b border-gray-200 z-50 ${isSticky ? "sticky top-0" : "relative"}`}
       >
-        <div className="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="text-2xl font-semibold text-blue-700 tracking-wide flex items-center">
-            <LogoIcon className="h-16 w-16 text-blue-700" />
-            <span className={`ml-2 ${logoFont.className}`}>Harmonia</span>
+        <div className="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
+          <div className="text-3xl font-bold text-[#0047AB] tracking-wide flex items-center">
+            <LogoIcon className="h-10 w-10 text-[#0047AB] mr-2" />
+            <span className={logoFont.className}>Harmonia</span>
           </div>
 
-          <div className="relative">
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center space-x-1 text-blue-600 font-medium hover:text-blue-800 transition-colors focus:outline-none"
-            >
-              <span>{content.nav[0]}</span>
-              <svg
-                className={`w-5 h-5 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M19 9l-7 7-7-7"
-                ></path>
+          <div className="hidden lg:flex items-center space-x-6 text-[#0047AB] font-medium text-lg">
+            {content.nav.map((navItem, idx) => (
+              <button key={idx} className="flex items-center hover:text-blue-900">
+                {navItem}
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            ))}
+          </div>
+
+          <div className="flex items-center space-x-5">
+            <button className="text-[#0047AB] hover:text-blue-900 relative">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+              <span className="absolute -top-1 -right-2 bg-[#0047AB] text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </button>
+            <button className="text-[#0047AB] hover:text-blue-900">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
-
-            {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-100 -md shadow-lg py-1 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-blue-700 hover:bg-blue-50 transition-colors"
-                >
-                  {content.nav[1]}
-                </a>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-blue-700 hover:bg-blue-50 transition-colors"
-                >
-                  {content.nav[2]}
-                </a>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-blue-700 hover:bg-blue-50 transition-colors"
-                >
-                  {content.nav[3]}
-                </a>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-blue-700 hover:bg-blue-50 transition-colors"
-                >
-                  {content.nav[4]}
-                </a>
-              </div>
-            )}
+            <button className="hidden sm:block px-6 py-2 rounded-full border-2 border-[#0047AB] text-[#0047AB] font-semibold hover:bg-blue-50 transition-colors">
+              {content.footerCol2_1}
+            </button>
+            <button className="px-6 py-2.5 rounded-full bg-[#0047AB] text-white font-semibold hover:bg-blue-800 transition-colors">
+              {content.booking}
+            </button>
           </div>
         </div>
       </nav>
 
-      <div className="max-w-5xl mx-auto space-y-12 p-6 mt-8">
-        {/* Information Textbox - Bootstrap-style panel */}
-        <div className="p-6 flex items-start gap-6">
-          <div className="flex-1">
-            <h2 className="text-2xl font-semibold text-blue-800">
+      <div className="max-w-[1400px] mx-auto space-y-16 px-6 mt-16">
+
+        <div className="flex flex-col md:flex-row gap-12 mt-8 py-10">
+          <div className="flex-1 py-8">
+            <p className="text-sm text-[#0047AB] mb-6 hover:underline cursor-pointer">
+              Etusivu / Vastaanottomme / Hieronta / {info.siteName}
+            </p>
+            <h1 className="text-5xl md:text-6xl font-bold text-[#0047AB] mb-6 tracking-tight">
               {info.siteName}
-            </h2>
-            <p className="mb-4 text-gray-700 leading-relaxed-100">
+            </h1>
+            <p className="text-gray-600 leading-relaxed mb-8 text-lg">
               {content.teamDescription}
             </p>
-            <button className="text-white bg-blue-800 rounded-full h-10 px-6 font-medium shadow">
+            <button className="text-white bg-[#0047AB] rounded-full px-10 py-4 text-lg font-medium hover:bg-blue-800 transition-colors">
               {content.booking}
             </button>
           </div>
-          <Image
-            src="/massage-hero-new.png"
-            alt="Bloom"
-            width={100}
-            height={50}
-            className="h-60 w-70"
-          />
+          <div className="flex-1 min-h-[500px] relative">
+            <Image
+              src="/stock-photos/massage-hero-stock.jpg"
+              alt="Massage"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
         </div>
 
         {/* Reservation Portal */}
-        <section id="booking" className="scroll-mt-10">
-          <div className="flex items-center mb-6">
-            <h2 className="text-3xl font-normal text-gray-800"></h2>
-            <div className="h-px bg-blue-800 flex-1 ml-6"></div>
+        <section id="booking" className="scroll-mt-10 border-t-4 border-[#0047AB] pt-10">
+          <div className="flex flex-col items-center mb-10 mt-6 text-center">
+            <h2 className="text-4xl font-semibold text-[#0047AB] mb-4">
+              {content.booking}
+            </h2>
           </div>
-          <p className="text-center text-blue-800 text-2xl leading-relaxed mb-4">
-            {content.booking}
-          </p>
           <div className="bg-white -xl shadow-lg border border-gray-200 overflow-hidden w-200 h-150 mx-auto">
             <div className="flex bg-gray-100 border-b border-gray-200">
               {[1, 2, 3, 4].map((num) => (
                 <div
                   key={num}
-                  className={`flex-1 text-center py-3 font-medium text-sm transition-colors duration-300 ${step === num ? "bg-blue-800 text-white shadow-inner" : step > num ? "text-blue-600 bg-white cursor-pointer hover:bg-gray-50" : "text-gray-400"}`}
-                  onClick={() => (step > num ? setStep(num) : null)}
+                  className={`flex-1 text-center py-3 font-medium text-sm transition-colors duration-300 cursor-pointer hover:bg-gray-50 ${step === num ? "bg-blue-800 text-white shadow-inner hover:bg-blue-800" : "text-blue-600 bg-white"}`}
+                  onClick={() => setStep(num)}
                 >
                   <span
-                    className={`inline-block w-6 h-6 -full mr-2 ${step === num ? "bg-white text-blue-800" : step > num ? "bg-blue-100 text-blue-800" : "bg-gray-200 text-gray-500"} leading-6`}
+                    className={`inline-block w-6 h-6 -full mr-2 ${step === num ? "bg-white text-blue-800" : "bg-blue-100 text-blue-800"} leading-6`}
                   >
                     {num}
                   </span>
@@ -681,8 +833,8 @@ export default function Studypage4() {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         {content.openTimes}
                       </label>
-                      <select className="w-full border border-gray-300 -md py-2 px-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-shadow bg-white">
-                        <option value="" disabled selected>
+                      <select className="w-full border border-gray-300 -md py-2 px-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-shadow bg-white" defaultValue="">
+                        <option value="" disabled>
                           {content.selectTime}
                         </option>
                         <option>09:00</option>
@@ -696,8 +848,8 @@ export default function Studypage4() {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         {content.employee}
                       </label>
-                      <select className="w-full border border-gray-300 -md py-2 px-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-shadow bg-white">
-                        <option value="" disabled selected>
+                      <select className="w-full border border-gray-300 -md py-2 px-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-shadow bg-white" defaultValue="">
+                        <option value="" disabled>
                           {content.selectEmployee}
                         </option>
                         <option>{info.employees[0].name}</option>
@@ -807,48 +959,41 @@ export default function Studypage4() {
 
         {/* Location Section */}
         <section>
-          <div className="flex items-center mb-6">
-            <h2 className="text-3xl font-normal text-gray-800">
+          <div className="flex flex-col items-center mb-10 text-center">
+            <h2 className="text-4xl font-semibold text-[#0047AB] mb-4">
               {content.locationMainTitle}
             </h2>
-            <div className="h-px bg-gray-300 flex-1 ml-6"></div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-1 gap-8 bg-grey-300 -xl shadow-sm border border-gray-200 overflow-hidden">
             <div className="p-8">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">
                 {content.locationTitle}
               </h3>
 
-              <div className="flex space-x-6 text-gray-600 mb-8">
-                <div>
-                  <div className="flex items-start mb-3">
-                    <div>
-                      <p>{info.address}</p>
-                    </div>
-                  </div>
-                </div>
+              <div className="text-gray-600 mb-8 text-center">
+                <p>{info.address}</p>
               </div>
 
-              <h4 className="text-xl font-semibold text-gray-800 mb-4">
+              <h4 className="text-xl font-semibold text-gray-800 mb-4 text-center">
                 {content.openHours}
               </h4>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex justify-between py-1 border-b border-gray-100">
+              <ul className="space-y-2 text-gray-600 text-center">
+                <li className="py-1 border-b border-gray-100">
                   <span>{content.monFri}</span>
-                  <span className="font-medium text-gray-800">
+                  <span className="font-medium text-gray-800 ml-2">
                     {content.monFriOpenHours}
                   </span>
                 </li>
-                <li className="flex justify-between py-1 border-b border-gray-100">
+                <li className="py-1 border-b border-gray-100">
                   <span>{content.sat}</span>
-                  <span className="font-medium text-gray-800">
+                  <span className="font-medium text-gray-800 ml-2">
                     {content.satOpenHours}
                   </span>
                 </li>
-                <li className="flex justify-between py-1">
+                <li className="py-1">
                   <span>{content.sun}</span>
-                  <span className="font-medium text-gray-400">
+                  <span className="font-medium text-gray-400 ml-2">
                     {content.sunOpenHours}
                   </span>
                 </li>
@@ -862,11 +1007,10 @@ export default function Studypage4() {
               </h5>
               <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-500 bg-gray-100 border-l border-gray-200">
                 <Image
-                  src="/icons/map.png"
+                  src="/icons/map-light.png"
                   alt="Location"
-                  width={260}
-                  height={90}
-                  className="h-full w-full object-cover"
+                  fill
+                  className="object-cover"
                 />
               </div>
             </div>
@@ -875,11 +1019,10 @@ export default function Studypage4() {
 
         {/* Employee Information */}
         <section className="pb-16">
-          <div className="flex items-center mb-8">
-            <h2 className="text-3xl font-normal text-gray-800">
+          <div className="flex flex-col items-center mb-10 text-center">
+            <h2 className="text-4xl font-semibold text-[#0047AB] mb-4">
               {content.aboutUs}
             </h2>
-            <div className="h-px bg-gray-300 flex-1 ml-6"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -910,42 +1053,164 @@ export default function Studypage4() {
         </section>
       </div>
 
-      {/* Footer - Modern 2015 look */}
-      <footer className="bg-blue-800 text-white py-10">
-        <div className="max-w-5xl mx-auto px-6 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
-          <div>
-          <div className="text-2xl font-semibold text-white tracking-wide flex items-center">
-            <LogoIcon className="h-16 w-16 text-white" />
-            <span className={`ml-2 ${logoFont.className}`}>Harmonia</span>
+
+      {/* 3 Cards Section */}
+      <section className="bg-white py-16 mt-16">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="border-t-4 border-[#0047AB] mb-12" />
+          <div className="flex flex-col items-center text-center mb-12">
+            <h2 className="text-4xl font-medium text-[#0047AB] mb-4">
+              {content.cardsTitle}
+            </h2>
+            <p className="text-lg text-gray-600 max-w-4xl">
+              {content.cardsDesc}
+            </p>
           </div>
-          </div>
-          <div className="mt-4 md:mt-0 space-x-6 text-sm">
-            <a href="#" className="hover:text-white transition-colors">
-              {content.footer[0]}
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              {content.footer[1]}
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              {content.footer[2]}
-            </a>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Card 1 */}
+            <div className="bg-white border border-gray-200 flex flex-col group cursor-pointer hover:shadow-lg transition-shadow">
+              <div className="h-64 w-full relative overflow-hidden bg-gray-100">
+                <Image src="/stock-photos/Extra1-fit.avif" alt="Hierontakortti" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+              </div>
+              <div className="p-8 flex flex-col flex-1">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">{content.card1Title}</h3>
+                <p className="text-gray-600 mb-8 flex-1 text-lg">
+                  {content.card1Desc}
+                </p>
+                <div className="text-[#0047AB] font-medium flex items-center group-hover:underline text-lg">
+                  {content.card1Link} <span className="ml-2">→</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-white border border-gray-200 flex flex-col group cursor-pointer hover:shadow-lg transition-shadow">
+              <div className="h-64 w-full relative overflow-hidden bg-gray-100">
+                <Image src="/stock-photos/Extra2-oldman.avif" alt="Maksutavat" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+              </div>
+              <div className="p-8 flex flex-col flex-1">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">{content.card2Title}</h3>
+                <p className="text-gray-600 mb-8 flex-1 text-lg">
+                  {content.card2Desc}
+                </p>
+                <div className="text-[#0047AB] font-medium flex items-center group-hover:underline text-lg">
+                  {content.card2Link} <span className="ml-2">→</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-white border border-gray-200 flex flex-col group cursor-pointer hover:shadow-lg transition-shadow">
+              <div className="h-64 w-full relative overflow-hidden bg-gray-100">
+                <Image src="/stock-photos/Extra3-relaxedwoman.avif" alt="Hinnat" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+              </div>
+              <div className="p-8 flex flex-col flex-1">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">{content.card3Title}</h3>
+                <p className="text-gray-600 mb-8 flex-1 text-lg">
+                  {content.card3Desc}
+                </p>
+                <div className="text-[#0047AB] font-medium flex items-center group-hover:underline text-lg">
+                  {content.card3Link} <span className="ml-2">→</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="max-w-5xl mx-auto px-6 text-center md:text-left flex flex-col md:flex-row justify-between items-center mt-4">
-          <div>
-            <h1 className="text-xs font-semibold text-white">{info.address}</h1>
-            <h2 className="text-xs font-semibold text-white mt-1">
-              {info.email}
-            </h2>
-            <h3 className="text-xs font-semibold text-white mt-1">
-              {info.phone}, {content.phonePricing}, {content.phoneOpenHours}
-            </h3>
-            <p className="text-sm text-white mt-10">
-              &copy; 2026 {content.footerCopyright}
+      </section>
+
+      {/* Massive Blue Footer */}
+      <footer className="bg-[#0047AB] text-white py-16">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+
+            {/* Logo and Info Column */}
+            <div className="md:col-span-4 flex flex-col">
+              <div className="text-4xl font-bold tracking-wide flex items-center mb-6">
+                <LogoIcon className="h-16 w-16 text-white mr-3" />
+                <span className={logoFont.className}>Harmonia</span>
+              </div>
+              <p className="font-semibold text-xl mb-8">
+                {content.footerTitle}
+              </p>
+
+              <div className="flex items-center mb-4 text-sm font-medium">
+                <svg className="w-5 h-5 mr-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clipRule="evenodd" />
+                </svg>
+                {info.address}
+              </div>
+              <div className="flex items-center mb-4 text-sm font-medium">
+                <span className="mr-4 text-xl">@</span>
+                {info.email}
+              </div>
+              <div className="flex items-center text-sm font-medium">
+                <svg className="w-5 h-5 mr-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                </svg>
+                {info.phone} ({content.phonePricing}) {content.phoneOpenHours}
+              </div>
+            </div>
+
+            {/* Links Columns */}
+            <div className="md:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+              <div>
+                <h4 className="font-semibold text-lg mb-6">{content.footerCol1}</h4>
+                <ul className="space-y-4 text-sm font-medium">
+                  <li><a href="#" className="hover:underline">{content.footerCol1_1}</a></li>
+                  <li><a href="#" className="hover:underline">{content.footerCol1_2}</a></li>
+                  <li><a href="#" className="hover:underline">{content.footerCol1_3}</a></li>
+                  <li><a href="#" className="hover:underline">{content.footerCol1_4}</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-lg mb-6">{content.footerCol2}</h4>
+                <ul className="space-y-4 text-sm font-medium">
+                  <li><a href="#" className="hover:underline">{content.footerCol2_1}</a></li>
+                  <li><a href="#" className="hover:underline">{content.footerCol2_2}</a></li>
+                  <li><a href="#" className="hover:underline">{content.footerCol2_3}</a></li>
+                  <li><a href="#" className="hover:underline">{content.footerCol2_4}</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-lg mb-6">{content.footerCol3}</h4>
+                <ul className="space-y-4 text-sm font-medium">
+                  <li><a href="#" className="hover:underline">{content.footerCol3_1}</a></li>
+                  <li><a href="#" className="hover:underline">{content.footerCol3_2}</a></li>
+                  <li><a href="#" className="hover:underline">{content.footerCol3_3}</a></li>
+                  <li><a href="#" className="hover:underline">{content.footerCol3_4}</a></li>
+                  <li><a href="#" className="hover:underline">{content.footerCol3_5}</a></li>
+                  <li><a href="#" className="hover:underline">{content.footerCol3_6}</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-lg mb-6">{content.footerCol4}</h4>
+                <ul className="space-y-4 text-sm font-medium">
+                  <li><a href="#" className="hover:underline">{content.footerCol4_1}</a></li>
+                  <li><a href="#" className="hover:underline">{content.footerCol4_2}</a></li>
+                  <li><a href="#" className="hover:underline">{content.footerCol4_3}</a></li>
+                  <li><a href="#" className="hover:underline">{content.footerCol4_4}</a></li>
+                </ul>
+                <h4 className="font-semibold text-lg mt-8 mb-6">{content.footerCol5}</h4>
+                <ul className="space-y-4 text-sm font-medium">
+                  <li><a href="#" className="hover:underline">{content.footerCol5}</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-8 border-t border-blue-700 flex justify-between items-center text-xs font-medium">
+            <p>
+              &copy; 2026 Harmonia Oy | Design by Uef students
             </p>
+            <div className="flex space-x-4">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" /></svg>
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clipRule="evenodd" /></svg>
+            </div>
           </div>
         </div>
       </footer>
+
     </div>
   );
 }
