@@ -115,14 +115,17 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
     >
       <div className="absolute inset-0 bg-black/60" onClick={onClose} />
 
-      <div className="relative z-10 flex h-[100dvh] w-full max-w-5xl flex-col overflow-y-auto rounded-none bg-white p-2 pb-2 shadow-2xl sm:h-[96vh] sm:max-h-[96vh] sm:rounded-2xl sm:p-6">
+      <div className="relative z-10 flex h-[100dvh] w-full max-w-5xl flex-col overflow-y-auto rounded-none bg-white px-3 pt-4 pb-3 shadow-2xl sm:h-[96vh] sm:max-h-[96vh] sm:rounded-2xl sm:p-6">
         <div className="flex flex-none items-start justify-between gap-4">
           <div>
             <h2 className="text-[20px] font-semibold text-slate-900 sm:text-2xl">
               {messages.survey.title}
             </h2>
             <p className="mt-1 text-[13px] text-slate-600">
-              {messages.survey.description}
+              <span className="block sm:inline">{messages.survey.description}</span>
+              <span className="mt-1 block text-[11px] text-slate-500 sm:mt-0 sm:ml-2 sm:inline sm:text-[12px]">
+                {messages.survey.responsesSaved}
+              </span>
             </p>
           </div>
           <button

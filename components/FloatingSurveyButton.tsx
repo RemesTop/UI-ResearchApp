@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import SurveyModal from "@/components/SurveyModal";
 import { useLocale } from "@/lib/LocaleContext";
 
@@ -54,9 +55,17 @@ export default function FloatingSurveyButton() {
 						setShowHint(false);
 						setHintClosed(true);
 					}}
-					className="rounded-full bg-slate-900 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
+					className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
 				>
-					{messages.floating.openSurvey}
+					<Image
+						src="/icons/Survey-icon.svg"
+						width={16}
+						height={16}
+						alt=""
+						aria-hidden="true"
+						className="h-4 w-4 brightness-0 invert"
+					/>
+					<span>{messages.floating.openSurvey}</span>
 				</button>
 			</div>
 

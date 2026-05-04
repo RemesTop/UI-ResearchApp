@@ -29,6 +29,7 @@ type Messages = {
   survey: {
     title: string;
     description: string;
+    responsesSaved: string;
     notConfigured: string;
     close: string;
     back: string;
@@ -79,6 +80,7 @@ const messages: Record<Locale, Messages> = {
     survey: {
       title: "Arviointikysely",
       description: "Vastaa kysymyksiin ja paina 'Seuraava sivu', kun olet valmis siirtymään eteenpäin.",
+      responsesSaved: "Vastaukset säilyvät sivujen välillä",
       notConfigured:
         "Aseta NEXT_PUBLIC_WEBROPOL_SURVEY_URL, jotta kysely upotetaan tähän.",
       close: "Sulje",
@@ -129,6 +131,7 @@ const messages: Record<Locale, Messages> = {
     survey: {
       title: "Interface Study Survey",
       description: "Answer the questions and press 'Next page' when you are ready to move on.",
+      responsesSaved: "Responses stay between pages",
       notConfigured:
         "Set NEXT_PUBLIC_WEBROPOL_SURVEY_URL to embed the survey here.",
       close: "Close",
