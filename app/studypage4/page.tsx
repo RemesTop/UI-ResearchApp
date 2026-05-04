@@ -454,6 +454,10 @@ export default function Studypage4() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { locale } = useLocale();
   const info = siteData[locale];
+  const employeeOrder = [2, 4, 0, 3, 1];
+  const employeesForPage = employeeOrder
+    .map((idx) => info.employees[idx])
+    .filter((employee): employee is (typeof info.employees)[number] => Boolean(employee));
   const { studyGroup } = useVariant();
   const content = pageContent[locale];
   const [isAiShowing, setIsAiShowing] = useState(studyGroup === "A");
@@ -659,11 +663,9 @@ export default function Studypage4() {
                         <option value="" disabled>
                           {content.selectEmployee}
                         </option>
-                        <option>{info.employees[0].name}</option>
-                        <option>{info.employees[1].name}</option>
-                        <option>{info.employees[2].name}</option>
-                        <option>{info.employees[3].name}</option>
-                        <option>{info.employees[4].name}</option>
+                        {employeesForPage.map((employee) => (
+                          <option key={employee.id}>{employee.name}</option>
+                        ))}
                       </select>
                     </div>
                   </div>
@@ -833,13 +835,14 @@ export default function Studypage4() {
           </div>
 
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-            {info.employees.map((employee) => (
+            {employeesForPage.map((employee) => (
               <article key={employee.id} className="text-center">
                 <div className="flex flex-col items-center rounded-xl bg-white p-2">
                   <div className="h-44 w-44 overflow-hidden rounded-full bg-white sm:h-36 sm:w-36 md:h-40 md:w-40">
                     {/* Next.js unoptimized used for external links in this mockup */}
                     <img
                       src={employee.image}
+                      alt={employee.name}
                       className="w-full h-full object-cover rounded-full"
                     />
                   </div>

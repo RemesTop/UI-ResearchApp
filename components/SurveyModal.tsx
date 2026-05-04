@@ -108,14 +108,14 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-stretch justify-center p-0 transition sm:items-start sm:p-4 ${
+      className={`fixed inset-0 z-50 flex items-stretch justify-center p-0 transition sm:items-start sm:px-4 sm:pt-4 sm:pb-0 ${
         isOpen ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
       aria-hidden={!isOpen}
     >
       <div className="absolute inset-0 bg-black/60" onClick={onClose} />
 
-      <div className="relative z-10 flex h-[100dvh] w-full max-w-5xl flex-col overflow-y-auto rounded-none bg-white p-2 pb-2 shadow-2xl sm:max-h-[92vh] sm:rounded-2xl sm:p-8">
+      <div className="relative z-10 flex h-[100dvh] w-full max-w-5xl flex-col overflow-y-auto rounded-none bg-white p-2 pb-2 shadow-2xl sm:h-[96vh] sm:max-h-[96vh] sm:rounded-2xl sm:p-6">
         <div className="flex flex-none items-start justify-between gap-4">
           <div>
             <h2 className="text-[20px] font-semibold text-slate-900 sm:text-2xl">
@@ -142,7 +142,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
         </div>
 
         {/* Iframe Container for webropol survey */}
-        <div className="relative mt-3 flex-1 min-h-0 overflow-hidden rounded-none border border-slate-200 bg-slate-50 sm:mt-6 sm:rounded-xl -mx-2 sm:mx-0">
+        <div className="relative mt-3 flex-1 min-h-0 overflow-hidden rounded-none border border-slate-200 bg-slate-50 sm:mt-4 sm:rounded-xl -mx-2 sm:mx-0">
           {surveyUrl ? (
             <iframe
               title={messages.survey.title}
@@ -158,7 +158,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
         </div>
 
         {/* Footer for buttons */}
-        <div className="mt-4 hidden flex-none flex-row items-center justify-end gap-4 sm:flex">
+        <div className="mt-3 hidden flex-none flex-row items-center justify-end gap-4 sm:flex">
           {navButtons}
           {nextButton}
         </div>

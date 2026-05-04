@@ -54,6 +54,15 @@ html {
   }
 }
 
+@media (min-width: 1024px) {
+  .survey-iframe {
+    transform: scale(0.9);
+    transform-origin: 0 0;
+    width: 111.12%;
+    height: 111.12%;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

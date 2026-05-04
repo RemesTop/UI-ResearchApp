@@ -78,8 +78,8 @@ export default function Home() {
               <Image
                 src="/icons/University_of_Eastern_Finland_logo.svg"
                 alt="University of Eastern Finland"
-                width={0}
-                height={0}
+                width={140}
+                height={22}
                 style={{ width: "auto", height: "22px" }}
               />
             </div>
