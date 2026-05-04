@@ -18,6 +18,18 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Web interface study",
   description: "UEF M.Sc. students survey",
+  metadataBase: new URL("https://web-tutkimus.vercel.app/"),
+  openGraph: {
+    title: "Web interface study",
+    description: "UEF M.Sc. students survey",
+    images: ["/preview-screenshot.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Web interface study",
+    description: "UEF M.Sc. students survey",
+    images: ["/preview-screenshot.png"],
+  },
 };
 
 export const viewport = {
