@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Website interface study",
-  description: "Website interface study",
+  title: "Web interface study",
+  description: "UEF M.Sc. students survey",
 };
 
 export const viewport = {
