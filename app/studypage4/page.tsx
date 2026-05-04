@@ -280,9 +280,9 @@ export function CookiePopup({
   studyGroup: "A" | "B" | null;
   content: typeof pageContent[keyof typeof pageContent];
 }) {
-  const [locationEnabled, setLocationEnabled] = useState(true);
-  const [adsEnabled, setAdsEnabled] = useState(true);
   const isGroupB = studyGroup === "B";
+  const [locationEnabled, setLocationEnabled] = useState(true);
+  const [adsEnabled, setAdsEnabled] = useState(!isGroupB); // Group B: ads off by default
   const isAcceptDisabled = isGroupB && (!locationEnabled || !adsEnabled);
 
   if (!isOpen) return null;
@@ -528,7 +528,7 @@ export default function Studypage4() {
         </div>
       </nav>
 
-      <div className="max-w-[1400px] mx-auto space-y-16 px-6 mt-16">
+      <div className="max-w-[1400px] mx-auto space-y-10 sm:space-y-16 px-4 sm:px-6 mt-6 sm:mt-16">
 
         <div className="flex flex-col md:flex-row gap-12 mt-8 py-10">
           <div className="flex-1 py-8">
@@ -545,7 +545,7 @@ export default function Studypage4() {
               {content.booking}
             </button>
           </div>
-          <div className="flex-1 min-h-[500px] relative">
+          <div className="flex-1 min-h-[300px] sm:min-h-[500px] relative">
             <Image
               src="/stock-photos/massage-hero-stock.jpg"
               alt="Massage"
@@ -772,7 +772,7 @@ export default function Studypage4() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-1 gap-8 bg-grey-300 -xl shadow-sm border border-gray-200 overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 bg-grey-300 -xl shadow-sm border border-gray-200 overflow-hidden">
             <div className="p-8">
               <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">
                 {content.locationTitle}
@@ -836,7 +836,7 @@ export default function Studypage4() {
             {info.employees.map((employee) => (
               <article key={employee.id} className="text-center">
                 <div className="flex flex-col items-center rounded-xl bg-white p-2">
-                  <div className="h-32 w-32 overflow-hidden rounded-full bg-white sm:h-36 sm:w-36 md:h-40 md:w-40">
+                  <div className="h-44 w-44 overflow-hidden rounded-full bg-white sm:h-36 sm:w-36 md:h-40 md:w-40">
                     {/* Next.js unoptimized used for external links in this mockup */}
                     <img
                       src={employee.image}
@@ -960,7 +960,7 @@ export default function Studypage4() {
             </div>
 
             {/* Links Columns */}
-            <div className="md:col-span-8 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
+            <div className="md:col-span-8 grid grid-cols-2 gap-8 md:grid-cols-4">
               <div>
                 <h4 className="font-semibold text-lg mb-6">{content.footerCol1}</h4>
                 <ul className="space-y-4 text-sm font-medium">

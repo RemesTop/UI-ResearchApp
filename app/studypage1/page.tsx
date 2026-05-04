@@ -605,7 +605,7 @@ export default function StudyPage1() {
 			</section>
 
 			{/* ─── SERVICES ─── */}
-			<section id="palvelut" className="py-24 sm:py-32">
+			<section id="palvelut" className="py-12 sm:py-24">
 				<div className="mx-auto max-w-7xl px-6">
 					<FadeSection className="text-center">
 						<span className={`mb-3 inline-block rounded-full ${theme.badgeBg} px-4 py-1.5 text-xs font-semibold uppercase tracking-widest ${theme.brand}`}>
@@ -643,7 +643,7 @@ export default function StudyPage1() {
 			{/* ─── ABOUT ─── */}
 			<section
 				id="meista"
-				className={`bg-gradient-to-b ${theme.gradientAbout} py-24 sm:py-32`}
+				className={`bg-gradient-to-b ${theme.gradientAbout} py-12 sm:py-24`}
 			>
 				<div className="mx-auto max-w-7xl px-6">
 					<div className="grid items-center gap-16 lg:grid-cols-2">
@@ -670,13 +670,13 @@ export default function StudyPage1() {
 								{t.about.body}
 							</p>
 
-							<div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
+							<div className="mt-10 grid grid-cols-3 gap-4">
 								{t.about.stats.map((s) => (
 									<div key={s.label}>
-										<p className={`text-3xl font-extrabold ${theme.brand}`}>
+										<p className={`text-xl font-extrabold sm:text-3xl ${theme.brand}`}>
 											{s.value}
 										</p>
-										<p className={`mt-1 text-sm ${theme.textMuted}`}>{s.label}</p>
+										<p className={`mt-1 text-xs sm:text-sm ${theme.textMuted}`}>{s.label}</p>
 									</div>
 								))}
 							</div>
@@ -686,7 +686,7 @@ export default function StudyPage1() {
 			</section>
 
 			{/* ─── TESTIMONIALS ─── */}
-			<section id="arvostelut" className="py-24 sm:py-32">
+			<section id="arvostelut" className="py-12 sm:py-24">
 				<div className="mx-auto max-w-7xl px-6">
 					<FadeSection className="text-center">
 						<span className={`mb-3 inline-block rounded-full ${theme.badgeBg} px-4 py-1.5 text-xs font-semibold uppercase tracking-widest ${theme.brand}`}>
@@ -719,7 +719,7 @@ export default function StudyPage1() {
 			{/* ─── PRICING ─── */}
 			<section
 				id="hinnasto"
-				className={`bg-gradient-to-b ${theme.gradientAbout} py-24 sm:py-32`}
+				className={`bg-gradient-to-b ${theme.gradientAbout} py-12 sm:py-24`}
 			>
 				<div className="mx-auto max-w-7xl px-6">
 					<FadeSection className="text-center">
@@ -812,7 +812,7 @@ export default function StudyPage1() {
 			</section>
 
 			{/* ─── CONTACT ─── */}
-			<section id="yhteystiedot" className="py-24 sm:py-32">
+			<section id="yhteystiedot" className="py-12 sm:py-24">
 				<div className="mx-auto max-w-7xl px-6">
 					<FadeSection className="text-center">
 						<span className={`mb-3 inline-block rounded-full ${theme.badgeBg} px-4 py-1.5 text-xs font-semibold uppercase tracking-widest ${theme.brand}`}>

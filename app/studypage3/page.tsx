@@ -35,24 +35,28 @@ const pageContent = {
 				description:
 					"Perinteinen menetelmä lihaskireyksien poistoon ja verenkierron vilkastuttamiseen. Lievittää kiputiloja ja rentouttaa mieltä.",
 				pricing: "30 min 47 € | 45 min 60 € | 60 min 75 €",
+				pricingAnchor30: "54 €",
 			},
 			{
 				title: "Urheiluhieronta",
 				description:
 					"Tehokkaampi hoitomuoto aktiiviliikkujille ja urheilijoille. Keskittyy lihashuoltoon, palautumiseen ja vammojen ennaltaehkäisyyn.",
 				pricing: "30 min 50 € | 45 min 65 € | 60 min 80 €",
+				pricingAnchor30: "57 €",
 			},
 			{
 				title: "Naprapatia",
 				description:
 					"Tuki- ja liikuntaelimistön häiriöiden asiantuntijahoito, johon sisältyy nivelten manipulaatiota ja mobilisaatiota sekä terapeuttista harjoittelua.",
 				pricing: "30 min 55 € | 45 min 70 € | 60 min 85 €",
+				pricingAnchor30: "62 €",
 			},
 			{
 				title: "Raskausajan hieronta",
 				description:
 					"Turvallista ja rentouttavaa hierontaa odottaville äideille. Hoito lievittää selkä- ja jalkasärkyä sekä parantaa kokonaisvaltaista hyvinvointia raskauden aikana.",
 				pricing: "30 min 47 € | 45 min 60 € | 60 min 75 €",
+				pricingAnchor30: "54 €",
 			},
 		],
 		teamTitle: "Tiimi",
@@ -97,24 +101,28 @@ const pageContent = {
 				description:
 					"A traditional method for reducing muscle tension and improving circulation. Helps with pain relief and deep relaxation.",
 				pricing: "30 min 47 € | 45 min 60 € | 60 min 75 €",
+				pricingAnchor30: "54 €",
 			},
 			{
 				title: "Sports massage",
 				description:
 					"A stronger treatment for active people and athletes. Focuses on muscle care, recovery, and injury prevention.",
 				pricing: "30 min 50 € | 45 min 65 € | 60 min 80 €",
+				pricingAnchor30: "57 €",
 			},
 			{
 				title: "Naprapathy",
 				description:
 					"Expert musculoskeletal care including joint manipulation, mobilization, and therapeutic exercise.",
 				pricing: "30 min 55 € | 45 min 70 € | 60 min 85 €",
+				pricingAnchor30: "62 €",
 			},
 			{
 				title: "Pregnancy massage",
 				description:
 					"Safe and relaxing treatment for expecting mothers. Helps reduce back and leg discomfort while supporting overall wellbeing.",
 				pricing: "30 min 47 € | 45 min 60 € | 60 min 75 €",
+				pricingAnchor30: "54 €",
 			},
 		],
 		teamTitle: "Team",
@@ -315,15 +323,40 @@ export default function StudyPage3() {
 				<section id="services" className="border-y border-[#b6a8cb] bg-[#baaace]">
 					<div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
 						<h2 className={`${titleFont.className} text-center text-4xl text-[#40334e]`}>{content.servicesTitle}</h2>
-						<p className="mx-auto mt-5 max-w-5xl text-base leading-7 text-[#473d57]">{content.servicesNotice}</p>
+						<p className="mx-auto mt-5 max-w-5xl text-base leading-7 text-[#473d57]">
+							<strong>{locale === "fi" ? "Huomioithan:" : "Please note:"}</strong>{content.servicesNotice.replace(/^Huomioithan:|^Please note:/, "")}
+						</p>
 						<div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-8">
-							{content.services.map((service) => (
-								<article key={service.title}>
-									<h3 className="text-2xl font-bold text-[#2f2839]">{service.title}</h3>
-									<p className="mt-2 text-base leading-7 text-[#4c445b]">{service.description}</p>
-									<p className="mt-2 text-base font-semibold text-[#322c3e]">{service.pricing}</p>
-								</article>
-							))}
+							{content.services.map((service) => {
+								const anchor = "pricingAnchor30" in service
+									? (service as typeof service & { pricingAnchor30: string }).pricingAnchor30
+									: null;
+								// Split pricing into first tier (30 min) and the rest
+								const [first30, ...rest] = service.pricing.split(" | ");
+								// Extract just the price token from "30 min 47 €"
+								const parts30 = first30.split(" "); // ["30","min","47","€"]
+								const realPrice = parts30.slice(2).join(" "); // "47 €"
+								return (
+									<article key={service.title}>
+										<h3 className="text-2xl font-bold text-[#2f2839]">{service.title}</h3>
+										<p className="mt-2 text-base leading-7 text-[#4c445b]">{service.description}</p>
+										<p className="mt-2 text-base font-semibold text-[#322c3e]">
+											{/* 30 min portion */}
+											<span>30 min </span>
+											{studyGroup === "A" && anchor ? (
+												<>
+													<strong className="text-lg text-[#c0392b]">{realPrice}</strong>
+													<span className="ml-1 text-sm font-normal text-[#9b8fa8] line-through">{anchor}</span>
+												</>
+											) : (
+												<span className="text-lg font-bold">{realPrice}</span>
+											)}
+											{/* Remaining tiers */}
+											{rest.length > 0 && <span className="font-semibold text-[#322c3e]"> | {rest.join(" | ")}</span>}
+										</p>
+									</article>
+								);
+							})}
 						</div>
 					</div>
 				</section>
@@ -353,11 +386,14 @@ export default function StudyPage3() {
 					<div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
 						<h2 className={`${titleFont.className} text-center text-4xl text-[#40334e]`}>{content.testimonialsTitle}</h2>
 						<p className="mx-auto mt-4 max-w-3xl text-center text-base leading-7 text-[#4b425a]">{content.testimonialsIntro}</p>
-						<p className="mt-4 text-center text-2xl tracking-[0.4rem] text-[#5c3a8e]">★★★★★</p>
+						{/* Stars shown only on sm+ as a shared row */}
+						<p className="mt-4 hidden text-center text-2xl tracking-[0.4rem] text-[#5c3a8e] sm:block">★★★★★</p>
 
 						<div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-8">
 							{content.testimonials.map((quote, index) => (
 								<blockquote key={index} className="text-center text-base leading-7 text-[#4a4258]">
+									{/* Per-testimonial stars on mobile only */}
+									<p className="mb-2 text-xl tracking-[0.3rem] text-[#5c3a8e] sm:hidden">★★★★★</p>
 									&quot;{quote}&quot;
 								</blockquote>
 							))}
@@ -389,13 +425,18 @@ export default function StudyPage3() {
 								<p>{info.email}</p>
 							</div>
 
-							<h3 className={`${titleFont.className} pt-4 text-2xl font-semibold`}>{content.hoursTitle}</h3>
-							{content.hours.map((line) => (
-								<p key={line}>{line}</p>
-							))}
-
-							<h3 className={`${titleFont.className} pt-4 text-2xl font-semibold`}>{content.paymentsTitle}</h3>
-							<p>{content.payments}</p>
+							<div className="grid grid-cols-2 gap-4 pt-4 sm:block">
+								<div>
+									<h3 className={`${titleFont.className} text-2xl font-semibold`}>{content.hoursTitle}</h3>
+									{content.hours.map((line) => (
+										<p key={line}>{line}</p>
+									))}
+								</div>
+								<div className="sm:pt-4">
+									<h3 className={`${titleFont.className} text-2xl font-semibold`}>{content.paymentsTitle}</h3>
+									<p>{content.payments}</p>
+								</div>
+							</div>
 						</div>
 
 						<div className="relative h-72 overflow-hidden border border-[#9e8fb8] bg-[#2d3956]">

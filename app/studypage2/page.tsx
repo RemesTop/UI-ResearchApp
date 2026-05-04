@@ -188,7 +188,7 @@ const ExpertsCarousel = ({
 	return (
 		<div className="w-full relative pt-4 overflow-hidden">
 			<FadeIn direction="up">
-				<div className="flex flex-col mb-16 gap-6 px-6 max-w-6xl mx-auto">
+				<div className="flex flex-col mb-6 sm:mb-16 gap-6 px-6 max-w-6xl mx-auto">
 					<div className="max-w-2xl">
 						<h2 className="text-3xl sm:text-4xl font-bold text-[#2B403B] tracking-tight">
 							{title}
@@ -551,7 +551,21 @@ export default function StudyPage2() {
 				{/* Hero Section */}
 				<section className="relative overflow-hidden bg-[#F5F2EB]">
 					<div className="absolute inset-0 bg-gradient-to-br from-[#F5F2EB] to-[#EBE6DF] opacity-50"></div>
-					<div className="max-w-6xl mx-auto px-6 py-20 lg:py-32 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
+					<div className="max-w-6xl mx-auto px-6 py-8 lg:py-32 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center relative z-10">
+						{/* Image first on mobile via order classes */}
+						<FadeIn direction="up" delay={200}>
+							<div className="order-first lg:order-last relative h-[220px] sm:h-[300px] lg:h-[550px] w-full rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white">
+								<Image
+									src={studyGroup === "B" ? "/stock-photos/massage-hero-stock.jpg" : "/massage-hero-new.png"}
+									alt="Massage therapy session"
+									fill
+									priority
+									sizes="(max-width: 1024px) 100vw, 50vw"
+									style={{ objectFit: "cover" }}
+									className="hover:scale-105 transition-transform duration-1000 object-center"
+								/>
+							</div>
+						</FadeIn>
 						<FadeIn direction="up">
 							<div className="inline-block px-4 py-2 bg-[#E1E5E0] text-[#2B403B] rounded-full text-sm font-semibold tracking-wider mb-6">
 								{business.siteName}
@@ -562,7 +576,7 @@ export default function StudyPage2() {
 							<p className="mt-6 text-lg text-[#5C554F] leading-relaxed max-w-xl">
 								{t.heroSubtitle}
 							</p>
-							<div className="mt-10 flex flex-col sm:flex-row gap-4">
+							<div className="mt-8 flex flex-col sm:flex-row gap-4">
 								<button
 									className="bg-[#2B403B] text-white px-8 py-4 rounded-full font-medium text-base hover:bg-[#1A2E2A] shadow-lg shadow-[#2B403B]/30 transition-all focus:ring-2 focus:ring-offset-2 focus:ring-[#2B403B] cursor-pointer"
 									onClick={() => scrollToSection('membership')}
@@ -577,24 +591,11 @@ export default function StudyPage2() {
 								</button>
 							</div>
 						</FadeIn>
-						<FadeIn direction="up" delay={200}>
-							<div className="relative h-[350px] lg:h-[550px] w-full rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white">
-								<Image
-									src={studyGroup === "B" ? "/stock-photos/massage-hero-stock.jpg" : "/massage-hero-new.png"}
-									alt="Massage therapy session"
-									fill
-									priority
-									sizes="(max-width: 1024px) 100vw, 50vw"
-									style={{ objectFit: "cover" }}
-									className="hover:scale-105 transition-transform duration-1000 object-center"
-								/>
-							</div>
-						</FadeIn>
 					</div>
 				</section>
 
 				{/* Services Section */}
-				<section id="services" className="py-16 bg-[#DDE4DB]">
+				<section id="services" className="py-8 sm:py-16 bg-[#DDE4DB]">
 					<div className="max-w-6xl mx-auto px-6">
 						<FadeIn direction="up">
 							<div className="text-center max-w-2xl mx-auto mb-16">
@@ -639,7 +640,7 @@ export default function StudyPage2() {
 
 
 				{/* Team Section */}
-				<section id="team" className="py-16 bg-[#F5F2EB]">
+				<section id="team" className="py-6 sm:py-16 bg-[#F5F2EB]">
                     <ExpertsCarousel 
                         experts={employees} 
                         title={t.teamTitle} 
@@ -650,7 +651,7 @@ export default function StudyPage2() {
 
 
 				{/* Membership / Calendar Section */}
-				<section id="membership" className="py-16 bg-[#E1E5E0]/40 border-b border-[#EBE6DF]">
+				<section id="membership" className="py-8 sm:py-16 bg-[#E1E5E0]/40 border-b border-[#EBE6DF]">
 					<div className="max-w-6xl mx-auto px-6">
 						<FadeIn direction="up">
 							<div className="grid lg:grid-cols-2 gap-8 lg:gap-12 mb-16 items-stretch">
@@ -755,7 +756,32 @@ export default function StudyPage2() {
 							</FadeIn>
 
 							<FadeIn direction="up" delay={150}>
-								<div className="bg-[#1A2E2A] p-10 rounded-3xl border border-[#4A5D4E]/30 shadow-2xl h-full flex flex-col">
+								{studyGroup === "B" && (
+									<div className="mb-6 flex items-center gap-5 rounded-2xl border border-[#4A5D4E]/40 bg-[#1A2E2A] px-6 py-5">
+										<Image
+											src="/icons/Certification.png"
+											alt="Sertifioitu hierontakeskus"
+											width={72}
+											height={72}
+											className="shrink-0 invert opacity-90"
+										/>
+										<div className="flex flex-col gap-2">
+											{[
+												locale === "fi" ? "Hierontaliiton hyväksymä" : "Massage association certified",
+												locale === "fi" ? "Tyytyväisyystakuu" : "Satisfaction guarantee",
+												locale === "fi" ? "Luotettava palveluntarjoaja 2025" : "Trusted provider 2025",
+											].map((label) => (
+												<span key={label} className="flex items-center gap-2 text-sm font-semibold text-[#E6D5C3]">
+													<svg className="h-4 w-4 shrink-0 text-[#7db89a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+													</svg>
+													{label}
+												</span>
+											))}
+										</div>
+									</div>
+								)}
+								<div className="bg-[#1A2E2A] p-10 rounded-3xl border border-[#4A5D4E]/30 shadow-2xl flex flex-col">
 									<h3 className="text-2xl font-semibold mb-8 text-white">
 										{t.openHoursTitle}
 									</h3>
