@@ -53,7 +53,7 @@ const messages: Record<Locale, Messages> = {
     intro: {
       badge: "Käyttöliittymätutkimus",
       title: "Tutkimuksen ohjeet",
-      lead: "Tehtävänäsi on käydä läpi sarja testiverkkosivuja ja arvioida niitä aivan kuin olisit mahdollinen asiakas.",
+      lead: "Tehtävänäsi on käydä läpi sarja testiverkkosivuja ja arvioida niitä aivan kuin olisit mahdollinen asiakas. Suosittelemme käyttämään tietokonetta.",
       steps: [
         { label: "Aloita esitiedoista", desc: "Vastaa kyselyn ensimmäisellä sivulla muutamaan taustakysymykseen." },
         { label: "Arvioi sivuja", desc: "Nettisivut ovat prototyyppejä, joten kaikki toiminnot eivät ole aitoja. Arvioi niitä ulkoasun ja yleisen käyttötuntuman perusteella." },
@@ -104,7 +104,7 @@ const messages: Record<Locale, Messages> = {
     intro: {
       badge: "Website interface study",
       title: "Study Instructions",
-      lead: "Your task is to go through a series of test websites and evaluate them as if you were a potential customer.",
+      lead: "Your task is to go through a series of test websites and evaluate them as if you were a potential customer. We recommend using a computer.",
       steps: [
         { label: "Start with background questions", desc: "Answer a few background questions on the first page of the survey." },
         { label: "Evaluate the pages", desc: "The websites are prototypes, so not all features are real. Evaluate them based on their appearance and overall feel." },
