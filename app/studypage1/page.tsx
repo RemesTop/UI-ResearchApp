@@ -403,35 +403,36 @@ export default function StudyPage1() {
 	const [mobileMenu, setMobileMenu] = useState(false);
 
 	const theme = studyGroup === "B" ? {
-		bg: "bg-[#121314]",
-		text: "text-zinc-100",
-		navBg: "bg-[#151719]/90",
-		borderLight: "border-[#26292C]",
-		brand: "text-yellow-400",
-		navLink: "text-zinc-400 transition hover:text-yellow-400",
-		btnBg: "bg-yellow-400 hover:bg-yellow-500",
-		btnSecondary: "border-yellow-400/30 text-yellow-400 transition hover:border-yellow-400/60 hover:bg-yellow-400/10",
-		footerBg: "bg-[#1A1C1E]",
-		footerText: "text-zinc-500",
-		gradientHero: "from-[#121314]/95 via-[#171A1C]/80 to-[#1C2023]/40",
-		gradientAbout: "from-[#16191B] to-[#121314]",
-		badgeBg: "bg-yellow-400/10",
-		badgeText: "text-yellow-400",
-		cardHover: "hover:shadow-yellow-400/10",
-		iconBg: "bg-[#1A1D1F]",
-		iconText: "text-yellow-400",
-		inputBg: "bg-[#1A1D1F]",
-		inputFocus: "focus:border-yellow-400 focus:ring-yellow-400/20",
-		priceHighlightBg: "bg-yellow-400",
-		priceHighlightIcon: "text-zinc-900",
-		priceStandardIcon: "text-yellow-400",
-		shadowBtn: "shadow-yellow-400/25",
-		textMuted: "text-zinc-400",
-		hoverTextBrand: "hover:text-yellow-400",
-        btnText: "text-zinc-950",
-		cardBg: "bg-[#1B1E20]",
-        btnSecondaryText: "text-yellow-400",
-        textInverted: "text-zinc-950",
+		bg: "bg-[#0E141B]",
+		text: "text-slate-100",
+		navBg: "bg-[#0E141B]/90",
+		borderLight: "border-[#1F2A37]",
+		brand: "text-[#22D3EE]",
+		navLink: "text-slate-300 transition hover:text-[#22D3EE]",
+		btnHover: "hover:bg-[#0EA5B7]",
+		btnSecondary: "border-[#22D3EE]/30 text-[#22D3EE] transition hover:border-[#22D3EE]/60 hover:bg-[#22D3EE]/10",
+		footerBg: "bg-[#0F1724]",
+		footerText: "text-slate-400",
+		gradientHero: "from-[#0E141B]/95 via-[#121A24]/80 to-[#192231]/40",
+		gradientAbout: "from-[#0F1724] to-[#0E141B]",
+		badgeBg: "bg-[#22D3EE]/10",
+		badgeText: "text-[#22D3EE]",
+		cardHover: "hover:shadow-[#22D3EE]/10",
+		iconBg: "bg-[#0F1724]",
+		iconText: "text-[#22D3EE]",
+		inputBg: "bg-[#0F1724]",
+		inputFocus: "focus:border-[#22D3EE] focus:ring-2 focus:ring-[#22D3EE]/20",
+		priceHighlightBg: "bg-[#22D3EE]",
+		priceHighlightBorder: "border-[#22D3EE]",
+		priceHighlightIcon: "text-slate-900",
+		priceStandardIcon: "text-[#22D3EE]",
+		shadowBtn: "shadow-[#22D3EE]/25",
+		textMuted: "text-slate-300",
+		hoverTextBrand: "hover:text-[#22D3EE]",
+        btnText: "text-slate-900",
+		cardBg: "bg-[#111827]",
+        btnSecondaryText: "text-[#22D3EE]",
+        textInverted: "text-slate-900",
 	} : {
 		bg: "bg-[#FAF7F2]",
 		text: "text-[#2D2A26]",
@@ -439,7 +440,7 @@ export default function StudyPage1() {
 		borderLight: "border-[#E8E0D4]",
 		brand: "text-[#6B4F3A]",
 		navLink: "text-[#6B5D4F] transition hover:text-[#6B4F3A]",
-		btnBg: "bg-[#6B4F3A] hover:bg-[#574030]",
+		btnHover: "hover:bg-[#574030]",
 		btnSecondary: "border-[#6B4F3A]/30 text-[#6B4F3A] transition hover:border-[#6B4F3A]/60 hover:bg-[#6B4F3A]/5",
 		footerBg: "bg-[#F3EDE4]",
 		footerText: "text-[#9A8D7F]",
@@ -451,8 +452,9 @@ export default function StudyPage1() {
 		iconBg: "bg-[#F3EDE4]",
 		iconText: "text-[#6B4F3A]",
 		inputBg: "bg-[#FAF7F2]",
-		inputFocus: "focus:border-[#6B4F3A] focus:ring-[#6B4F3A]/20",
+		inputFocus: "focus:border-[#6B4F3A] focus:ring-2 focus:ring-[#6B4F3A]/20",
 		priceHighlightBg: "bg-[#6B4F3A]",
+		priceHighlightBorder: "border-[#6B4F3A]",
 		priceHighlightIcon: "text-amber-300",
 		priceStandardIcon: "text-[#6B4F3A]",
 		shadowBtn: "shadow-[#6B4F3A]/25",
@@ -510,7 +512,7 @@ export default function StudyPage1() {
 					<div className="flex items-center gap-3">
 						<button
 							onClick={() => scrollTo("yhteystiedot")}
-							className={`hidden rounded-full ${theme.priceHighlightBg} px-5 py-2 text-sm font-semibold ${theme.btnText} shadow transition ${theme.btnBg.replace('bg-yellow-400 ', '').replace('bg-[#6B4F3A] ', '')} sm:inline-flex`}
+							className={`hidden rounded-full ${theme.priceHighlightBg} px-5 py-2 text-sm font-semibold ${theme.btnText} shadow transition ${theme.btnHover} sm:inline-flex`}
 						>
 							{t.hero.cta}
 						</button>
@@ -589,13 +591,13 @@ export default function StudyPage1() {
 						<div className="mt-10 flex flex-wrap gap-4">
 							<button
 								onClick={() => scrollTo("yhteystiedot")}
-								className={`rounded-full ${theme.priceHighlightBg} px-8 py-3.5 text-sm font-semibold ${theme.btnText} shadow-lg ${theme.shadowBtn} transition ${theme.btnBg.replace('bg-yellow-400 ', '').replace('bg-[#6B4F3A] ', '')} hover:shadow-xl`}
+								className={`rounded-full ${theme.priceHighlightBg} px-8 py-3.5 text-sm font-semibold ${theme.btnText} shadow-lg ${theme.shadowBtn} transition ${theme.btnHover} hover:shadow-xl`}
 							>
 								{t.hero.cta}
 							</button>
 							<button
 								onClick={() => scrollTo("palvelut")}
-								className={`rounded-full border-2 border-[#6B4F3A]/30 px-8 py-3.5 text-sm font-semibold ${theme.brand} transition hover:border-[#6B4F3A]/60 hover:${theme.priceHighlightBg}/5`}
+								className={`rounded-full border-2 px-8 py-3.5 text-sm font-semibold ${theme.btnSecondary}`}
 							>
 								{t.hero.secondary}
 							</button>
@@ -740,7 +742,7 @@ export default function StudyPage1() {
 								<div
 									className={`relative flex h-full flex-col rounded-2xl border p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
 										plan.highlight
-											? `border-[#6B4F3A] ${theme.priceHighlightBg} ${theme.btnText}`
+											? `${theme.priceHighlightBorder} ${theme.priceHighlightBg} ${theme.btnText}`
 											: `${theme.borderLight} ${theme.cardBg}`
 									}`}
 								>
@@ -799,7 +801,7 @@ export default function StudyPage1() {
 										className={`mt-8 w-full rounded-full py-3 text-sm font-semibold transition ${
 											plan.highlight
 												? `${theme.cardBg} ${theme.brand} hover:${theme.cardBg}/90`
-												: `${theme.priceHighlightBg} ${theme.btnText} ${theme.btnBg.replace('bg-yellow-400 ', '')}`
+												: `${theme.priceHighlightBg} ${theme.btnText} ${theme.btnHover}`
 										}`}
 									>
 										{t.hero.cta}
@@ -947,7 +949,7 @@ export default function StudyPage1() {
 									</label>
 									<input
 										type="text"
-										className={`w-full rounded-xl border ${theme.borderLight} ${theme.bg} px-4 py-3 text-sm ${theme.text} outline-none transition focus:border-[#6B4F3A] focus:ring-2 focus:ring-[#6B4F3A]/20`}
+										className={`w-full rounded-xl border ${theme.borderLight} ${theme.bg} px-4 py-3 text-sm ${theme.text} outline-none transition ${theme.inputFocus}`}
 									/>
 								</div>
 								<div>
@@ -956,7 +958,7 @@ export default function StudyPage1() {
 									</label>
 									<input
 										type="email"
-										className={`w-full rounded-xl border ${theme.borderLight} ${theme.bg} px-4 py-3 text-sm ${theme.text} outline-none transition focus:border-[#6B4F3A] focus:ring-2 focus:ring-[#6B4F3A]/20`}
+										className={`w-full rounded-xl border ${theme.borderLight} ${theme.bg} px-4 py-3 text-sm ${theme.text} outline-none transition ${theme.inputFocus}`}
 									/>
 								</div>
 								<div>
@@ -965,12 +967,12 @@ export default function StudyPage1() {
 									</label>
 									<textarea
 										rows={5}
-										className={`w-full resize-none rounded-xl border ${theme.borderLight} ${theme.bg} px-4 py-3 text-sm ${theme.text} outline-none transition focus:border-[#6B4F3A] focus:ring-2 focus:ring-[#6B4F3A]/20`}
+										className={`w-full resize-none rounded-xl border ${theme.borderLight} ${theme.bg} px-4 py-3 text-sm ${theme.text} outline-none transition ${theme.inputFocus}`}
 									/>
 								</div>
 								<button
 									type="submit"
-									className={`mt-2 w-full rounded-full ${theme.priceHighlightBg} py-3.5 text-sm font-semibold ${theme.btnText} shadow transition hover:bg-[#574030]`}
+									className={`mt-2 w-full rounded-full ${theme.priceHighlightBg} py-3.5 text-sm font-semibold ${theme.btnText} shadow transition ${theme.btnHover}`}
 								>
 									{t.contact.formSubmit}
 								</button>

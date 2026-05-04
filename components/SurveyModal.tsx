@@ -68,11 +68,15 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
     router.push(studyRoutes[currentRouteIndex + 1]);
   };
 
-  const navButtons = (
+  const navRoutesMobile = studyRoutes.slice(0, -1);
+
+  const renderNavButtons = (routes: string[], showEndLabel: boolean) => (
     <div className="flex w-max flex-nowrap gap-2">
-      {studyRoutes.map((route, idx) => {
+      {routes.map((route) => {
+        const routeIndex = studyRoutes.indexOf(route);
         // A button is accessible if it's the current page, previously visited, or exactly one step ahead of the furthest visited page
-        const isGreyedOut = idx > maxRouteIndex + 1;
+        const isGreyedOut = routeIndex > maxRouteIndex + 1;
+        const isEnd = showEndLabel && routeIndex === studyRoutes.length - 1;
         return (
           <button
             key={route}
@@ -81,15 +85,15 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
               router.push(route);
             }}
             disabled={isGreyedOut}
-            className={`flex h-8 ${idx === studyRoutes.length - 1 ? "w-auto px-4" : "w-8"} items-center justify-center rounded-full text-[12px] font-medium transition sm:text-[13px] md:text-sm ${
-              currentRouteIndex === idx
+            className={`flex h-8 ${isEnd ? "w-auto px-4" : "w-8"} items-center justify-center rounded-full text-[12px] font-medium transition sm:text-[13px] md:text-sm ${
+              currentRouteIndex === routeIndex
                 ? "bg-slate-900 text-white"
                 : isGreyedOut
                 ? "bg-slate-100 text-slate-400 cursor-not-allowed"
                 : "bg-slate-200 text-slate-700 hover:bg-slate-300"
             }`}
           >
-            {idx === studyRoutes.length - 1 ? (locale === "fi" ? "Loppu" : "End") : idx + 1}
+            {isEnd ? (locale === "fi" ? "Loppu" : "End") : routeIndex + 1}
           </button>
         );
       })}
@@ -139,7 +143,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
 
         <div className="mt-3 flex flex-none items-center gap-2 sm:hidden">
           <div className="min-w-0 flex-1 overflow-x-auto">
-            {navButtons}
+            {renderNavButtons(navRoutesMobile, false)}
           </div>
           {nextButton}
         </div>
@@ -162,7 +166,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
 
         {/* Footer for buttons */}
         <div className="mt-3 hidden flex-none flex-row items-center justify-end gap-4 sm:flex">
-          {navButtons}
+          {renderNavButtons(studyRoutes, true)}
           {nextButton}
         </div>
       </div>
