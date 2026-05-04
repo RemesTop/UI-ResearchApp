@@ -185,7 +185,7 @@ export default function StudyPage3() {
 	const [isBottomPopupOpen, setIsBottomPopupOpen] = useState(false);
 	const [hasShownBottomPopup, setHasShownBottomPopup] = useState(studyGroup === "B");
 
-	const renderLines = (lines: string[]) => (
+	const renderLines = (lines: readonly string[]) => (
 		<>
 			{lines.map((line, index) => (
 				<span key={`${line}-${index}`}>
