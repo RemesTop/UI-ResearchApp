@@ -103,7 +103,7 @@ const messages: Record<Locale, Messages> = {
   en: {
     intro: {
       badge: "Website interface study",
-      title: "Study Instructions",
+      title: "Study instructions",
       lead: "Your task is to go through a series of test websites and evaluate them as if you were a potential customer. We recommend using a computer.",
       steps: [
         { label: "Start with background questions", desc: "Answer a few background questions on the first page of the survey." },

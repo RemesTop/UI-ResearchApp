@@ -7,6 +7,7 @@ import { Mada, Marcellus_SC } from "next/font/google";
 import { useEffect, useState } from "react";
 import { useVariant } from "@/lib/VariantContext";
 import LogoIcon from "@/components/LogoIcon";
+import PromoPopup from "@/components/PromoPopup";
 
 const titleFont = Marcellus_SC({
 	weight: "400",
@@ -80,8 +81,21 @@ const pageContent = {
 		socialsTitle: "Löydät meidät myös:",
 		mapLabel: "Kartta",
 		mapAlt: "Karttanäkymä toimipisteen alueesta",
-		welcomePopupAlt: "Tarjousponnahdusikkuna",
-		newsletterPopupAlt: "Uutiskirjeponnahdusikkuna",
+		popupClose: "Sulje",
+		discountPopup: {
+			titleLines: ["HALUATKO EROON KIVUSTA?", "NYT -30% ALENNUS!"],
+			buttonText: "Lunasta",
+			emailPlaceholder: "Syötä sähköpostisi tähän..",
+		},
+		newsletterPopup: {
+			title: "Tilaa uutiskirje:",
+			subtitleLines: [
+				"Saat kerran kuukaudessa vinkkejä",
+				"lihashuoltoon ja kehon hyvinvointiin.",
+			],
+			buttonText: "Tilaa",
+			emailPlaceholder: "Syötä sähköpostisi tähän..",
+		},
 		facebook: "Harmonia hyvinvointi",
 		instagram: "@harmoniawellness",
 	},
@@ -146,47 +160,22 @@ const pageContent = {
 		socialsTitle: "You can also find us on:",
 		mapLabel: "Map preview",
 		mapAlt: "Map view near the clinic",
-		welcomePopupAlt: "Offer popup",
-		newsletterPopupAlt: "Newsletter popup",
+		popupClose: "Close",
+		discountPopup: {
+			titleLines: ["READY TO BE PAIN FREE?", "NOW 30% OFF!"],
+			buttonText: "Claim",
+			emailPlaceholder: "Enter your email here..",
+		},
+		newsletterPopup: {
+			title: "Subscribe to the newsletter:",
+			subtitleLines: ["Get monthly tips", "for muscle care and wellbeing."],
+			buttonText: "Subscribe",
+			emailPlaceholder: "Enter your email here..",
+		},
 		facebook: "Harmonia Wellness",
 		instagram: "@harmoniawellness",
 	},
 } as const;
-
-function PopupImageModal({
-	isOpen,
-	onClose,
-	src,
-	alt,
-	imageWidth,
-	imageHeight,
-}: {
-	isOpen: boolean;
-	onClose: () => void;
-	src: string;
-	alt: string;
-	imageWidth: number;
-	imageHeight: number;
-}) {
-	if (!isOpen) return null;
-
-	return (
-		<div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/35 p-4" onClick={onClose}>
-			<div className="relative w-full max-w-[456px] overflow-hidden shadow-2xl" onClick={(event) => event.stopPropagation()}>
-				<div style={{ position: "relative", width: "100%", paddingBottom: `${(imageHeight / imageWidth) * 100}%` }}>
-					<Image src={src} alt={alt} fill sizes="456px" className="object-contain" priority />
-				</div>
-				<button
-					type="button"
-					onClick={onClose}
-					aria-label="Close popup"
-					className="absolute right-0 top-0 h-20 w-20 cursor-pointer bg-transparent"
-				/>
-			</div>
-		</div>
-	);
-}
-
 export default function StudyPage3() {
 	const { locale } = useLocale();
 	const content = pageContent[locale];
@@ -195,6 +184,22 @@ export default function StudyPage3() {
 	const [isWelcomePopupOpen, setIsWelcomePopupOpen] = useState(studyGroup === "A");
 	const [isBottomPopupOpen, setIsBottomPopupOpen] = useState(false);
 	const [hasShownBottomPopup, setHasShownBottomPopup] = useState(studyGroup === "B");
+
+	const renderLines = (lines: string[]) => (
+		<>
+			{lines.map((line, index) => (
+				<span key={`${line}-${index}`}>
+					{line}
+					{index < lines.length - 1 && <br />}
+				</span>
+			))}
+		</>
+	);
+
+	const handlePromoSubmit = (_email: string) => {
+		setIsWelcomePopupOpen(false);
+		setIsBottomPopupOpen(false);
+	};
 
 	useEffect(() => {
 		const previousBodyBackground = document.body.style.backgroundColor;
@@ -239,22 +244,27 @@ export default function StudyPage3() {
 
 	return (
 		<div className={`${bodyFont.className} min-h-screen bg-[#c9bdd9] text-[#332f3f]`}>
-			<PopupImageModal
-				isOpen={isWelcomePopupOpen}
-				onClose={() => setIsWelcomePopupOpen(false)}
-				src="/popup1.png"
-				alt={content.welcomePopupAlt}
-				imageWidth={456}
-				imageHeight={257}
-			/>
-			<PopupImageModal
-				isOpen={isBottomPopupOpen}
-				onClose={() => setIsBottomPopupOpen(false)}
-				src="/popup2.png"
-				alt={content.newsletterPopupAlt}
-				imageWidth={456}
-				imageHeight={390}
-			/>
+			{isWelcomePopupOpen && (
+				<PromoPopup
+					title={renderLines(content.discountPopup.titleLines)}
+					buttonText={content.discountPopup.buttonText}
+					emailPlaceholder={content.discountPopup.emailPlaceholder}
+					closeLabel={content.popupClose}
+					onClose={() => setIsWelcomePopupOpen(false)}
+					onSubmit={handlePromoSubmit}
+				/>
+			)}
+			{isBottomPopupOpen && (
+				<PromoPopup
+					title={content.newsletterPopup.title}
+					subtitle={renderLines(content.newsletterPopup.subtitleLines)}
+					buttonText={content.newsletterPopup.buttonText}
+					emailPlaceholder={content.newsletterPopup.emailPlaceholder}
+					closeLabel={content.popupClose}
+					onClose={() => setIsBottomPopupOpen(false)}
+					onSubmit={handlePromoSubmit}
+				/>
+			)}
 			<header className="sticky top-0 z-10 border-b border-[#5d457d] bg-[#8556bf] text-white">
 				<div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-3 py-2 sm:px-6">
 					<div className="flex items-center gap-3">
