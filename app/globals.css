@@ -139,6 +139,31 @@ body[data-survey-open="true"] .ai-assistant {
   display: none !important;
 }
 
+@media (pointer: coarse) {
+  .survey-modal-panel {
+    height: 100svh;
+    max-height: 100svh;
+  }
+
+  .survey-modal-root.survey-keyboard-open .survey-modal-panel {
+    padding: 0.25rem;
+  }
+
+  .survey-modal-root.survey-keyboard-open .survey-modal-header {
+    display: none;
+  }
+
+  .survey-modal-root.survey-keyboard-open .survey-modal-mobile-nav {
+    display: none;
+  }
+
+  .survey-modal-root.survey-keyboard-open .survey-modal-frame {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 .floating-survey {
   right: calc(1.5rem + env(safe-area-inset-right));
   bottom: calc(1.5rem + env(safe-area-inset-bottom));

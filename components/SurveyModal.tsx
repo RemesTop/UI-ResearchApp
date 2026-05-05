@@ -29,6 +29,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
     currentRouteIndex >= 0 && currentRouteIndex < studyRoutes.length - 1;
 
   const [maxRouteIndex, setMaxRouteIndex] = useState(0);
+  const [keyboardOpen, setKeyboardOpen] = useState(false);
 
   useEffect(() => {
     if (currentRouteIndex < 0) return;
@@ -58,6 +59,29 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      setKeyboardOpen(false);
+      return;
+    }
+
+    const viewport = window.visualViewport;
+    if (!viewport) return;
+
+    const updateKeyboardState = () => {
+      const heightDelta = window.innerHeight - viewport.height;
+      setKeyboardOpen(heightDelta > 120);
+    };
+
+    updateKeyboardState();
+    viewport.addEventListener("resize", updateKeyboardState);
+    viewport.addEventListener("scroll", updateKeyboardState);
+
+    return () => {
+      viewport.removeEventListener("resize", updateKeyboardState);
+      viewport.removeEventListener("scroll", updateKeyboardState);
+    };
+  }, [isOpen]);
 
   const handleNext = () => {
     if (!hasNext) {
@@ -113,6 +137,8 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
   return (
     <div
       className={`survey-modal-root fixed inset-0 z-50 flex items-stretch justify-center p-0 transition sm:items-start sm:px-4 sm:pt-4 sm:pb-0 ${
+        keyboardOpen ? "survey-keyboard-open" : ""
+      } ${
         isOpen ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
       aria-hidden={!isOpen}
@@ -141,15 +167,17 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
           </button>
         </div>
 
-        <div className="survey-modal-mobile-nav mt-3 flex flex-none items-center gap-2 sm:hidden">
-          <div className="min-w-0 flex-1 overflow-x-auto">
+        <div className="survey-modal-mobile-nav mt-1 flex flex-none items-center justify-between sm:hidden">
+          <div className="min-w-0 overflow-x-auto">
             {renderNavButtons(navRoutesMobile, false)}
           </div>
-          {nextButton}
+          <div className="ml-2 flex-shrink-0">
+            {nextButton}
+          </div>
         </div>
 
         {/* Iframe Container for webropol survey */}
-        <div className="survey-modal-frame relative mt-3 flex-1 min-h-0 overflow-hidden rounded-none border border-slate-200 bg-slate-50 sm:mt-4 sm:rounded-xl -mx-2 sm:mx-0">
+        <div className="survey-modal-frame relative mt-1.5 flex-1 min-h-0 overflow-hidden rounded-none border border-slate-200 bg-slate-50 sm:mt-4 sm:rounded-xl -mx-2 sm:mx-0">
           {surveyUrl ? (
             <iframe
               title={messages.survey.title}
