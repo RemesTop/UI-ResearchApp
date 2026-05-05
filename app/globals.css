@@ -39,18 +39,18 @@ html {
 
 @media (max-width: 768px) {
   .survey-iframe {
-    transform: scale(0.75);
+    transform: scale(0.55);
     transform-origin: 0 0;
-    width: 133.34%;
-    height: 133.34%;
+    width: 181.81%;
+    height: 181.81%;
   }
 }
 
 @media (max-width: 480px) {
   .survey-iframe {
-    transform: scale(0.7);
-    width: 142.86%;
-    height: 142.86%;
+    transform: scale(0.55);
+    width: 181.81%;
+    height: 181.81%;
   }
 }
 
@@ -65,10 +65,10 @@ html {
 
 @media (max-height: 520px), (orientation: landscape) and (max-width: 1024px) {
   .survey-iframe {
-    transform: scale(0.7);
+    transform: scale(0.55);
     transform-origin: 0 0;
-    width: 142.86%;
-    height: 142.86%;
+    width: 181.81%;
+    height: 181.81%;
   }
 
   .survey-modal-root {
@@ -81,11 +81,11 @@ html {
     max-height: 100dvh;
     max-width: 100%;
     border-radius: 0;
-    padding: 0.5rem;
+    padding: 0.25rem;
   }
 
   .survey-modal-header {
-    gap: 0.5rem;
+    gap: 0.25rem;
   }
 
   .survey-modal-title {
@@ -96,7 +96,7 @@ html {
   .survey-modal-desc {
     font-size: 0.75rem;
     line-height: 1.1;
-    margin-top: 0.25rem;
+    margin-top: 0.125rem;
   }
 
   .survey-modal-meta {
@@ -108,8 +108,8 @@ html {
   }
 
   .survey-modal-mobile-nav {
-    display: flex;
-    margin-top: 0.25rem;
+    display: flex !important;
+    margin-top: 0.125rem;
   }
 
   .survey-modal-mobile-nav button {
@@ -118,10 +118,11 @@ html {
   }
 
   .survey-modal-footer {
-    display: none;
+    display: none !important;
   }
 
   .survey-modal-frame {
+    margin-top: 0.25rem !important;
     margin-left: -0.25rem;
     margin-right: -0.25rem;
     border-radius: 0;
