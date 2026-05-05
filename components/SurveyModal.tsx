@@ -112,36 +112,36 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-stretch justify-center p-0 transition sm:items-start sm:px-4 sm:pt-4 sm:pb-0 ${
+      className={`survey-modal-root fixed inset-0 z-50 flex items-stretch justify-center p-0 transition sm:items-start sm:px-4 sm:pt-4 sm:pb-0 ${
         isOpen ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
       aria-hidden={!isOpen}
     >
       <div className="absolute inset-0 bg-black/60" onClick={onClose} />
 
-      <div className="relative z-10 flex h-[100dvh] w-full max-w-5xl flex-col overflow-y-auto rounded-none bg-white px-3 pt-4 pb-3 shadow-2xl sm:h-[96vh] sm:max-h-[96vh] sm:rounded-2xl sm:p-6">
-        <div className="flex flex-none items-start justify-between gap-4">
+      <div className="survey-modal-panel relative z-10 flex h-[100dvh] w-full max-w-5xl flex-col overflow-y-auto rounded-none bg-white px-3 pt-4 pb-3 shadow-2xl sm:h-[96vh] sm:max-h-[96vh] sm:rounded-2xl sm:p-6">
+        <div className="survey-modal-header flex flex-none items-start justify-between gap-4">
           <div>
-            <h2 className="text-[20px] font-semibold text-slate-900 sm:text-2xl">
+            <h2 className="survey-modal-title text-[20px] font-semibold text-slate-900 sm:text-2xl">
               {messages.survey.title}
             </h2>
-            <p className="mt-1 text-[13px] text-slate-600">
+            <p className="survey-modal-desc mt-1 text-[13px] text-slate-600">
               <span className="block sm:inline">{messages.survey.description}</span>
-              <span className="mt-1 block text-[11px] text-slate-500 sm:mt-0 sm:ml-2 sm:inline sm:text-[12px]">
+              <span className="survey-modal-meta mt-1 block text-[11px] text-slate-500 sm:mt-0 sm:ml-2 sm:inline sm:text-[12px]">
                 {messages.survey.responsesSaved}
               </span>
             </p>
           </div>
           <button
             onClick={onClose}
-            className="rounded-md bg-red-600 p-1.5 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
+            className="survey-modal-close rounded-md bg-red-600 p-1.5 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
             aria-label={messages.survey.close}
           >
             <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
           </button>
         </div>
 
-        <div className="mt-3 flex flex-none items-center gap-2 sm:hidden">
+        <div className="survey-modal-mobile-nav mt-3 flex flex-none items-center gap-2 sm:hidden">
           <div className="min-w-0 flex-1 overflow-x-auto">
             {renderNavButtons(navRoutesMobile, false)}
           </div>
@@ -149,7 +149,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
         </div>
 
         {/* Iframe Container for webropol survey */}
-        <div className="relative mt-3 flex-1 min-h-0 overflow-hidden rounded-none border border-slate-200 bg-slate-50 sm:mt-4 sm:rounded-xl -mx-2 sm:mx-0">
+        <div className="survey-modal-frame relative mt-3 flex-1 min-h-0 overflow-hidden rounded-none border border-slate-200 bg-slate-50 sm:mt-4 sm:rounded-xl -mx-2 sm:mx-0">
           {surveyUrl ? (
             <iframe
               title={messages.survey.title}
@@ -165,7 +165,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
         </div>
 
         {/* Footer for buttons */}
-        <div className="mt-3 hidden flex-none flex-row items-center justify-end gap-4 sm:flex">
+        <div className="survey-modal-footer mt-3 hidden flex-none flex-row items-center justify-end gap-4 sm:flex">
           {renderNavButtons(studyRoutes, true)}
           {nextButton}
         </div>
