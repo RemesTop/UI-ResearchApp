@@ -10,6 +10,7 @@ type Messages = {
     lead: string;
     steps: { label: string; desc: string }[];
     privacyNote: string;
+    surveyClosed: string;
     begin: string;
   };
   locale: {
@@ -61,6 +62,7 @@ const messages: Record<Locale, Messages> = {
         { label: "Lähetä vastaukset", desc: "Muista lopuksi painaa kyselyn viimeisellä sivulla 'Lähetä'." },
       ],
       privacyNote: "Tämä tutkimus ei kerää sinusta mitään tunnistettavia tietoja. Sivuilla näkyvät evästeilmoitukset ovat mukana vain luomassa realistista käyttökokemusta, eivätkä ne oikeasti kerää dataa.",
+      surveyClosed: "Tutkimus on päättynyt 11.5.2026.",
       begin: "Aloita tutkimus",
     },
     locale: {
@@ -112,6 +114,7 @@ const messages: Record<Locale, Messages> = {
         { label: "Submit your answers", desc: "Finally, remember to press 'Submit' on the last page of the survey." },
       ],
       privacyNote: "This study does not collect any identifiable information about you. Cookie notices shown on the pages are included only to simulate a realistic browsing experience and do not actually collect any data.",
+      surveyClosed: "The survey has closed 11.5.2026.",
       begin: "Begin Study",
     },
     locale: {
