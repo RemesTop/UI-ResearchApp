@@ -62,7 +62,8 @@ const messages: Record<Locale, Messages> = {
         { label: "Lähetä vastaukset", desc: "Muista lopuksi painaa kyselyn viimeisellä sivulla 'Lähetä'." },
       ],
       privacyNote: "Tämä tutkimus ei kerää sinusta mitään tunnistettavia tietoja. Sivuilla näkyvät evästeilmoitukset ovat mukana vain luomassa realistista käyttökokemusta, eivätkä ne oikeasti kerää dataa.",
-      surveyClosed: "Tutkimus on päättynyt 11.5.2026.",
+      surveyClosed:
+        "Tutkimus on päättynyt 11.5.2026.\nTutkimme mm. tekoälyn käytön vaikutusta käyttäjäkokemuksessa\nTämän tutkimuksen tulosten mukaan täysin tekoälyllä luotuihin elementteihin suhtauduttiin kriittisesti, kun taas tekoälyavusteinen muotoilu saavutti lähes saman tason ihmisen luoman designin kanssa.",
       begin: "Aloita tutkimus",
     },
     locale: {
@@ -114,7 +115,7 @@ const messages: Record<Locale, Messages> = {
         { label: "Submit your answers", desc: "Finally, remember to press 'Submit' on the last page of the survey." },
       ],
       privacyNote: "This study does not collect any identifiable information about you. Cookie notices shown on the pages are included only to simulate a realistic browsing experience and do not actually collect any data.",
-      surveyClosed: "The survey has closed 11.5.2026.",
+      surveyClosed: "The survey has closed 11.5.2026.\nWe studied, among other things, the impact of using AI on user experience.\nAccording to the study results, fully AI-generated elements were viewed critically, whereas AI-assisted design achieved the same level as human-created design.",
       begin: "Begin Study",
     },
     locale: {

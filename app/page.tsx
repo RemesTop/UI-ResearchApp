@@ -62,7 +62,7 @@ export default function Home() {
           <p className="mt-5 text-sm leading-6 text-slate-500 italic border-t border-slate-100 pt-4">
             {messages.intro.privacyNote}
           </p>
-          <p className="mt-3 text-sm leading-6 text-slate-500 italic">
+          <p className="mt-3 text-sm leading-6 text-slate-500 italic whitespace-pre-line">
             {messages.intro.surveyClosed}
           </p>
 
